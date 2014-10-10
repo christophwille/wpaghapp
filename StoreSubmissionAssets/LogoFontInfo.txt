@@ -1,0 +1,10 @@
+Font: Adobe Gothic Std B
+
+Font Sizes:
+
+Splashscreen:  72px
+SmallLogo-240: 48px
+71x71-240:     72px
+StoreLogo-240: 48px
+WideLogo-240:  72px
+Logo-240:      96px
