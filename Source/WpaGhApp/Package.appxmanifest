@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="be778e15-0387-4bb8-8fae-d18c054f693f" Publisher="CN=christophw" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="be778e15-0387-4bb8-8fae-d18c054f693f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="ChristophWille.OctoCentral" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="4fba018f-deca-40bb-bc13-da4aa9a8a5fc" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>WpaGhApp</DisplayName>
+    <DisplayName>OctoCentral</DisplayName>
     <PublisherDisplayName>Christoph Wille</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

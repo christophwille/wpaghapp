@@ -20,6 +20,7 @@ namespace WpaGhApp.ViewModels
             VersionText = GetAppVersion();
 
             GitHubUrl = new Uri("https://github.com/christophwille/wpaghapp/");
+            ReleaseHistoryUrl = new Uri("https://github.com/christophwille/wpaghapp/wiki/Release-History");
             PrivacyPolicyUrl = new Uri("https://github.com/christophwille/wpaghapp/wiki/Privacy-Policy");
         }
         public string ApplicationName
@@ -36,6 +37,7 @@ namespace WpaGhApp.ViewModels
         }
 
         public Uri GitHubUrl { get; set; }
+        public Uri ReleaseHistoryUrl { get; set; }
         public Uri PrivacyPolicyUrl { get; set; }
 
         public async void ReviewTheApp()

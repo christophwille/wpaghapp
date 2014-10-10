@@ -66,25 +66,36 @@ namespace WpaGhApp.Github
 
             string content = String.Join("&", contentParams.Select(p => String.Format("{0}={1}", p.Key, p.Value)));
 
-            var response = await _gitHubClient.Connection.Post<OAuthTokenResponse>(
-                new Uri("https://github.com/login/oauth/access_token", UriKind.Absolute),
-                content,
-                "application/json",
-                "application/x-www-form-urlencoded").ConfigureAwait(false); ;
-
-            // TODO: save the entire json token (expiration time / renewal)
-            string token = response.BodyAsObject.access_token;
-
-            var storedTokenInfo = new TokenSecurityInfo()
+            try
             {
-                AccessToken = token
-            };
+                SetLastError(null);
 
-            VaultManager.Save(VaultTokenInfoResourceKey,
-                VaultDefaultUnusedUserName,
-                JsonConvert.SerializeObject(storedTokenInfo));
+                var response = await _gitHubClient.Connection.Post<OAuthTokenResponse>(
+                        new Uri("https://github.com/login/oauth/access_token", UriKind.Absolute),
+                        content,
+                        "application/json",
+                        "application/x-www-form-urlencoded").ConfigureAwait(false);
 
-            return true;
+                // TODO: save the entire json token (expiration time / renewal)
+                string token = response.BodyAsObject.access_token;
+
+                var storedTokenInfo = new TokenSecurityInfo()
+                {
+                    AccessToken = token
+                };
+
+                VaultManager.Save(VaultTokenInfoResourceKey,
+                    VaultDefaultUnusedUserName,
+                    JsonConvert.SerializeObject(storedTokenInfo));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SetLastError(ex);
+            }
+
+            return false;
         }
 
         public async Task<Credentials> GetCredentialsAsync()

@@ -15,12 +15,14 @@ namespace WpaGhApp.DesignViewModels
             VersionText = "1.0";
 
             GitHubUrl = new Uri("http://chrison.net/");
+            ReleaseHistoryUrl = new Uri("http://chrison.net/");
             PrivacyPolicyUrl = new Uri("http://chrison.net/");
         }
 
         public string ApplicationName { get; private set; }
         public string VersionText { get; set; }
         public Uri GitHubUrl { get; set; }
+        public Uri ReleaseHistoryUrl { get; set; }
         public Uri PrivacyPolicyUrl { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace WpaGhApp.ViewModels
     {
         string VersionText { get; set; }
         Uri GitHubUrl { get; set; }
+        Uri ReleaseHistoryUrl { get; set; }
         Uri PrivacyPolicyUrl { get; set; }
     }
 }

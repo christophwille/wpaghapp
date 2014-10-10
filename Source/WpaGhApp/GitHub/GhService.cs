@@ -11,8 +11,8 @@ namespace WpaGhApp.Github
 {
     public partial class GhService : IGitHubService
     {
-        private const string ProductHeaderName = "WPA81Test";
-        private const string ProductHeaderValue = "0.0.0.1";
+        private const string ProductHeaderName = "OctoCentral";
+        private const string ProductHeaderValue = "1.0.0.0";
 
         private readonly GitHubClient _gitHubClient;
 

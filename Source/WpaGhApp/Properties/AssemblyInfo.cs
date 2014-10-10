@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WpaGhApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("OctoCentral")]
+[assembly: AssemblyDescription("A GitHub client for Windows Phone 8.1")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WpaGhApp")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("Christoph Wille")]
+[assembly: AssemblyProduct("OctoCentral")]
+[assembly: AssemblyCopyright("Copyright © Christoph Wille 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

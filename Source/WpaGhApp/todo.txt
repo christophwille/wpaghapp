@@ -1,0 +1,11 @@
+﻿TODO LIST
+
+Necessary improvements
+
+* MainView: progress report when loading (repos, followers, following)
+
+
+Feature areas
+
+* Repository: news, code, commits (possibly also issues) [use Pivot]
+* Navigate to user: MainView with navigation parameter for login

@@ -51,7 +51,10 @@
                         NavigateUri="{Binding GitHubUrl}"
                         HorizontalAlignment="Left"
                         Content="Support &amp; Source Code" />
-
+                    <HyperlinkButton
+                        NavigateUri="{Binding ReleaseHistoryUrl}"
+                        HorizontalAlignment="Left"
+                        Content="Release History" />
                     <HyperlinkButton
                         NavigateUri="{Binding PrivacyPolicyUrl}"
                         HorizontalAlignment="Left"
