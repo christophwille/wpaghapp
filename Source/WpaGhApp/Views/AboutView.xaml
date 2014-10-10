@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="WpaGhApp.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WpaGhApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
+    mc:Ignorable="d"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:AboutViewModelDT, IsDesignTimeCreatable=True}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{Binding ApplicationName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="about" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Text="by Christoph Wille" Style="{ThemeResource BodyTextBlockStyle}" />
+
+                    <TextBlock Margin="0,10,0,0" TextWrapping="Wrap" Style="{ThemeResource BodyTextBlockStyle}"
+                                           Text="This application is open source. Got ideas for features, improving the app or bug reports? Please go to the support page and let us know. Thanks!"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                        <TextBlock Text="Version:"  Style="{ThemeResource BodyTextBlockStyle}"/>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding VersionText}"  Style="{ThemeResource BodyTextBlockStyle}"/>
+                    </StackPanel>
+
+                    <Button x:Name="ReviewTheApp"
+                        HorizontalAlignment="Left" 
+                        Content="Review the app"/>
+
+                    <HyperlinkButton
+                        NavigateUri="{Binding GitHubUrl}"
+                        HorizontalAlignment="Left"
+                        Content="Support &amp; Source Code" />
+
+                    <HyperlinkButton
+                        NavigateUri="{Binding PrivacyPolicyUrl}"
+                        HorizontalAlignment="Left"
+                        Content="Privacy Policy" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

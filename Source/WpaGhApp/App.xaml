@@ -1,0 +1,8 @@
+﻿<caliburn:CaliburnApplication
+    x:Class="WpaGhApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:caliburn="using:Caliburn.Micro"
+    xmlns:local="using:WpaGhApp">
+
+</caliburn:CaliburnApplication>

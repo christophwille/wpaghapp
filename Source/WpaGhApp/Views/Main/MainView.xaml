@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="WpaGhApp.Views.Main.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WpaGhApp.Views.Main"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
+    mc:Ignorable="d"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:MainViewModelDT, IsDesignTimeCreatable=True}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    micro:Message.Attach="[Event Click] = [Action AboutApp()]"
+                    Label="about"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Pivot
+               x:Name="Items"
+               Title="{Binding ApplicationName}" 
+               SelectedItem="{Binding ActiveItem, Mode=TwoWay}"
+               CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+        </Pivot>
+    </Grid>
+</Page>
