@@ -8,3 +8,4 @@ SmallLogo-240: 48px
 StoreLogo-240: 48px
 WideLogo-240:  72px
 Logo-240:      96px
+Store Logo:    144px
