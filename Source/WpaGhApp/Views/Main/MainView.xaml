@@ -27,6 +27,9 @@
                 <AppBarButton
                     micro:Message.Attach="[Event Click] = [Action AboutApp()]"
                     Label="about"/>
+                <AppBarButton
+                    micro:Message.Attach="[Event Click] = [Action ChangeAuthZ()]"
+                    Label="change authorization"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

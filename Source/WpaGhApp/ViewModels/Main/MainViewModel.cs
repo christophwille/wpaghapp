@@ -49,5 +49,11 @@ namespace WpaGhApp.ViewModels.Main
             _navigationService.UriFor<AboutViewModel>()
                 .Navigate();
         }
+
+        public void ChangeAuthZ()
+        {
+            _navigationService.UriFor<AuthorizeViewModel>()
+                .Navigate();
+        }
     }
 }
