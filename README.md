@@ -6,7 +6,7 @@ It uses [Octokit](https://github.com/octokit/octokit.net/) to talk to GitHub.
 
 [Release History](https://github.com/christophwille/wpaghapp/wiki/Release-History)
 
-[in Windows Phone Store]()
+[in Windows Phone Store](http://www.windowsphone.com/en-us/store/app/octocentral/5450b4ca-875b-4d47-8d2a-75004a873f87)
 
 ## Reporting Bugs, Requesting Features
 
