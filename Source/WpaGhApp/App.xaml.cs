@@ -64,7 +64,8 @@ namespace WpaGhApp
                     .PerRequest<RepositoryCommitsViewModel>()
                     .PerRequest<RepositoryIssuesViewModel>()
                 .PerRequest<AboutViewModel>()
-                .PerRequest<AuthorizeViewModel>();
+                .PerRequest<AuthorizeViewModel>()
+                .PerRequest<HtmlUrlViewModel>();
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)

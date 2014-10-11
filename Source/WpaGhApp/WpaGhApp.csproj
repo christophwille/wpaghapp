@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HtmlUrlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main\CommonFollowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +172,7 @@
     <Compile Include="Services\IResourceLoader.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AuthorizeViewModel.cs" />
+    <Compile Include="ViewModels\HtmlUrlViewModel.cs" />
     <Compile Include="ViewModels\IAboutViewModelBindings.cs" />
     <Compile Include="ViewModels\IAuthorizeViewModel.cs" />
     <Compile Include="ViewModels\IViewModelWithRepositoryId.cs" />
@@ -193,6 +198,9 @@
     </Compile>
     <Compile Include="Views\AuthorizeView.xaml.cs">
       <DependentUpon>AuthorizeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HtmlUrlView.xaml.cs">
+      <DependentUpon>HtmlUrlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\CommonFollowControl.xaml.cs">
       <DependentUpon>CommonFollowControl.xaml</DependentUpon>

@@ -31,6 +31,18 @@ namespace WpaGhApp.DesignViewModels
                     }
                 }
             });
+
+            Issues = new ObservableCollection<Issue>(new List<Issue>
+            {
+                new Issue()
+                {
+                    Title = "Get rid of all bugs in the app",
+                    Assignee = new User()
+                    {
+                        Login = "christophwille"
+                    }
+                }
+            });
         }
 
         public ObservableCollection<Octokit.GitHubCommit> Commits { get; private set; }

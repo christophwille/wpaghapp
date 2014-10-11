@@ -51,9 +51,10 @@ namespace WpaGhApp.ViewModels.Repository
             var issue = eventArgs.ClickedItem as Octokit.Issue;
             if (null == issue) return;
 
-            //_navigationService.UriFor<RepositoryViewModel>()
-            //    .WithParam(vm => vm.RepositoryJson, JsonConvert.SerializeObject(repository))
-            //    .Navigate();
+            _navigationService.UriFor<HtmlUrlViewModel>()
+                .WithParam(vm => vm.PageTitle, issue.Title)
+                .WithParam(vm => vm.HtmlUrl, issue.HtmlUrl.ToString()) // this is Uri, with commit it is string....
+                .Navigate();
         }
     }
 }

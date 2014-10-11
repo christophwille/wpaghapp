@@ -51,9 +51,10 @@ namespace WpaGhApp.ViewModels.Repository
             var ghCommit = eventArgs.ClickedItem as Octokit.GitHubCommit;
             if (null == ghCommit) return;
 
-            //_navigationService.UriFor<RepositoryViewModel>()
-            //    .WithParam(vm => vm.RepositoryJson, JsonConvert.SerializeObject(repository))
-            //    .Navigate();
+            _navigationService.UriFor<HtmlUrlViewModel>()
+                .WithParam(vm => vm.PageTitle, ghCommit.Commit.Message)
+                .WithParam(vm => vm.HtmlUrl, ghCommit.HtmlUrl)
+                .Navigate();
         }
     }
 }
