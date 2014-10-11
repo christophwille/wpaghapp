@@ -12,4 +12,4 @@ Feature areas
 
 ----
 
-go to commit, go back - no longer on commits page --> page state is necessary
+go to commit, go back - no longer on commits page --> page state is necessary (and it reloads)

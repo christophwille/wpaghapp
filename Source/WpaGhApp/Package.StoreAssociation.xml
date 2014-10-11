@@ -197,6 +197,13 @@
     <MainPackageIdentityName>ChristophWille.Sprudelsuche</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Station366</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Vasily</MainPackageIdentityName>
+    <MainPackageIdentityName>ChristophWille.ViennaRealTime</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=392f5d95-6928-4925-95d0-3c8b728eb78c" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=392f5d95-6928-4925-95d0-3c8b728eb78c">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.0</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>
