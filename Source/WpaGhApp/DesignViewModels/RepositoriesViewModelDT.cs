@@ -28,6 +28,7 @@ namespace WpaGhApp.DesignViewModels
             });
         }
 
+        public bool Working { get; set; }
         public ObservableCollection<Repository> Repositories { get; private set; }
     }
 }

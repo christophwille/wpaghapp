@@ -7,11 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     xmlns:micro="using:Caliburn.Micro"
+    xmlns:common="using:WpaGhApp.Common"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d"
-    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:CompositeRepositoryViewDT, IsDesignTimeCreatable=True}}"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:RepositoryCommitsViewModelDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
+
+    <interactivity:Interaction.Behaviors>
+        <common:ProgressBehavior IsVisible="{Binding Working}"
+                                Text="Loading commits..."/>
+    </interactivity:Interaction.Behaviors>
+
     <Grid>
         <ListView
               ItemsSource="{Binding Commits}"

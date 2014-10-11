@@ -17,7 +17,7 @@ namespace WpaGhApp.DesignViewModels
         }
 
         public string ApplicationName { get; private set; }
-        public bool CompletingAuthorization { get; set; }
+        public bool Working { get; set; }
         public string InfoMessage { get; set; }
         public bool ShowAuthorizeButton { get; set; }
     }

@@ -32,7 +32,7 @@ namespace WpaGhApp.ViewModels
             get { return _loader.GetString(WellknownStringResources.ApplicationTitle); }
         }
 
-        public bool CompletingAuthorization { get; set; }
+        public bool Working { get; set; }
         public string InfoMessage { get; set; }
         public bool ShowAuthorizeButton { get; set; }
 
@@ -52,7 +52,7 @@ namespace WpaGhApp.ViewModels
             try
             {
                 ShowAuthorizeButton = false;
-                CompletingAuthorization = true;
+                Working = true;
                 InfoMessage = _loader.GetString("AuthZ_CompletingOAuthFlow_AcquiringAccessToken");
 
                 bool ok = await _githubService.CompleteOAuthFlowAsync(result.ResponseData);
@@ -75,7 +75,7 @@ namespace WpaGhApp.ViewModels
             finally
             {
                 ShowAuthorizeButton = true;
-                CompletingAuthorization = false;
+                Working = false;
             }
         }
     }

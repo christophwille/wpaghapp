@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     mc:Ignorable="d"
-    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:CompositeRepositoryViewDT, IsDesignTimeCreatable=True}}"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:RepositoryViewModelDT, IsDesignTimeCreatable=True}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Transitions>

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpaGhApp.ViewModels
 {
-    public interface IAuthorizeViewModelBindings : IViewModelWithApplicationName, IViewModelWithProgessIndicator
+    public interface IViewModelWithProgessIndicator
     {
         bool Working { get; set; }
-        string InfoMessage { get; set; }
-        bool ShowAuthorizeButton { get; set; }
     }
 }

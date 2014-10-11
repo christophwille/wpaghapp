@@ -7,10 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     xmlns:micro="using:Caliburn.Micro"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:common="using:WpaGhApp.Common"
     mc:Ignorable="d"
     d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:RepositoriesViewModelDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
     d:DesignWidth="400">
+
+    <interactivity:Interaction.Behaviors>
+        <common:ProgressBehavior IsVisible="{Binding Working}"
+                                Text="Loading repositories..."/>
+    </interactivity:Interaction.Behaviors>
     
     <Grid>
         <ListView

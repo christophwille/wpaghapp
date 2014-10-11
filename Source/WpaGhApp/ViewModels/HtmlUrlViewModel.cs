@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace WpaGhApp.ViewModels
 {
-    public class HtmlUrlViewModel : Screen
+    public class HtmlUrlViewModel : Screen, IHtmlUrlViewModel
     {
         public string PageTitle { get; set; }
         public string HtmlUrl { get; set; }

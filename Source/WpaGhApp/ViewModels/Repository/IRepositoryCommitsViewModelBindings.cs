@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpaGhApp.ViewModels.Repository
 {
-    public interface IRepositoryCommitsViewModelBindings
+    public interface IRepositoryCommitsViewModelBindings : IViewModelWithProgessIndicator
     {
         ObservableCollection<Octokit.GitHubCommit> Commits { get; }
     }

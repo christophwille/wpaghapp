@@ -153,12 +153,15 @@
     <Compile Include="DataModel\SampleDataSource.cs" />
     <Compile Include="DesignViewModels\AboutViewModelDT.cs" />
     <Compile Include="DesignViewModels\AuthorizeViewModelDT.cs" />
-    <Compile Include="DesignViewModels\CompositeRepositoryViewDT.cs" />
+    <Compile Include="DesignViewModels\HtmlUrlViewModelDT.cs" />
+    <Compile Include="DesignViewModels\RepositoryViewModelDT.cs" />
     <Compile Include="DesignViewModels\FollowViewModelDT.cs" />
     <Compile Include="DesignViewModels\MainViewModelDT.cs" />
     <Compile Include="DesignViewModels\NewsViewModelDT.cs" />
     <Compile Include="DesignViewModels\RepositoriesViewModelDT.cs" />
+    <Compile Include="DesignViewModels\RepositoryCommitsViewModelDT.cs" />
     <Compile Include="DesignViewModels\RepositoryInfoViewModelDT.cs" />
+    <Compile Include="DesignViewModels\RepositoryIssuesViewModelDT.cs" />
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
@@ -180,6 +183,8 @@
     <Compile Include="ViewModels\HtmlUrlViewModel.cs" />
     <Compile Include="ViewModels\IAboutViewModelBindings.cs" />
     <Compile Include="ViewModels\IAuthorizeViewModel.cs" />
+    <Compile Include="ViewModels\IHtmlUrlViewModel.cs" />
+    <Compile Include="ViewModels\IViewModelWithProgessIndicator.cs" />
     <Compile Include="ViewModels\IViewModelWithRepositoryId.cs" />
     <Compile Include="ViewModels\Main\FollowersViewModel.cs" />
     <Compile Include="ViewModels\Main\FollowingViewModel.cs" />

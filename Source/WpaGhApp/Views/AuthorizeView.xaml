@@ -13,7 +13,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <interactivity:Interaction.Behaviors>
-        <common:ProgressBehavior IsVisible="{Binding CompletingAuthorization}"
+        <common:ProgressBehavior IsVisible="{Binding Working}"
                                 Text="Completing authorization"/>
     </interactivity:Interaction.Behaviors>
     

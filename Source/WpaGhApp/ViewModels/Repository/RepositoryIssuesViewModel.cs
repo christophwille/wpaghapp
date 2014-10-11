@@ -30,11 +30,13 @@ namespace WpaGhApp.ViewModels.Repository
         }
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
-
+        public bool Working { get; set; }
         public ObservableCollection<Octokit.Issue> Issues { get; private set; }
-        protected async override void OnActivate()
+        protected async override void OnInitialize()
         {
+            Working = true;
             var issues = await _githubService.GetIssuesAsync(RepositoryId);
+            Working = false;
 
             if (null == issues)
             {

@@ -31,5 +31,7 @@ namespace WpaGhApp.DesignViewModels
                 },
             });
         }
+
+        public bool Working { get; set; }
     }
 }

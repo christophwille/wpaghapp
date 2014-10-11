@@ -6,11 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:common="using:WpaGhApp.Common"
     mc:Ignorable="d"
     d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:FollowViewModelDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
+    
+    <interactivity:Interaction.Behaviors>
+        <common:ProgressBehavior IsVisible="{Binding Working}"
+                                Text="Loading following..."/>
+    </interactivity:Interaction.Behaviors>
+    
     <Grid>
         <local:CommonFollowControl DataContext="{Binding}" />
     </Grid>

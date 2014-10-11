@@ -27,11 +27,14 @@ namespace WpaGhApp.ViewModels.Main
             _navigationService = navigationService;
         }
 
+        public bool Working { get; set; }
         public ObservableCollection<User> Users { get; private set; }
 
-        protected override async void OnActivate()
+        protected override async void OnInitialize()
         {
+            Working = true;
             var users = await GetFollowUsersAsync();
+            Working = false;
 
             if (null == users)
             {

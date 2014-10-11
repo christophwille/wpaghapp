@@ -21,7 +21,7 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "news";
         }
 
-        protected async override void OnActivate()
+        protected async override void OnInitialize()
         {
             // Currently not working: await _githubService.GetNewsAsync();
         }

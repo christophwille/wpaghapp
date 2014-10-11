@@ -8,7 +8,7 @@ using Octokit;
 
 namespace WpaGhApp.ViewModels.Main
 {
-    public interface IFollowViewModelBindings
+    public interface IFollowViewModelBindings : IViewModelWithProgessIndicator
     {
         ObservableCollection<User> Users { get; }
     }

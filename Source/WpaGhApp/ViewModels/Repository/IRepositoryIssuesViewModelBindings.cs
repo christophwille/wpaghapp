@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpaGhApp.ViewModels.Repository
 {
-    public interface IRepositoryIssuesViewModelBindings
+    public interface IRepositoryIssuesViewModelBindings : IViewModelWithProgessIndicator
     {
         ObservableCollection<Octokit.Issue> Issues { get; }
     }

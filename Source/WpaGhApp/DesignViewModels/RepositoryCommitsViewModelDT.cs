@@ -9,13 +9,10 @@ using WpaGhApp.ViewModels.Repository;
 
 namespace WpaGhApp.DesignViewModels
 {
-    public class CompositeRepositoryViewDT : IRepositoryIssuesViewModelBindings, IRepositoryCommitsViewModelBindings, IRepositoryViewModelBindings
+    public class RepositoryCommitsViewModelDT : IRepositoryCommitsViewModelBindings
     {
-        public CompositeRepositoryViewDT()
+        public RepositoryCommitsViewModelDT()
         {
-            RepositoryName = "winrt-snippets";
-            RepositoryOwner = "christophwille";
-
             Commits = new ObservableCollection<GitHubCommit>(new List<GitHubCommit>
             {
                 new GitHubCommit()
@@ -44,31 +41,9 @@ namespace WpaGhApp.DesignViewModels
                 }
             });
 
-            Issues = new ObservableCollection<Issue>(new List<Issue>
-            {
-                new Issue()
-                {
-                    Title = "Get rid of all bugs in the app",
-                    Assignee = new User()
-                    {
-                        Login = "christophwille"
-                    },
-                },
-                new Issue()
-                {
-                    Title = "We do not support multiline. It will simply be cut off at screen size",
-                    Assignee = new User()
-                    {
-                        Login = "dgrunwald"
-                    },
-                }
-            });
         }
 
         public ObservableCollection<Octokit.GitHubCommit> Commits { get; private set; }
-        public ObservableCollection<Octokit.Issue> Issues { get; private set; }
-
-        public string RepositoryName { get; private set; }
-        public string RepositoryOwner { get; private set; }
+        public bool Working { get; set; }
     }
 }

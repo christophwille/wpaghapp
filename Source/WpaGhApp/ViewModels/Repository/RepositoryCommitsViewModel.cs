@@ -29,12 +29,16 @@ namespace WpaGhApp.ViewModels.Repository
             DisplayName = "commits";
         }
 
+        public bool Working { get; set; }
+
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
 
         public ObservableCollection<Octokit.GitHubCommit> Commits { get; private set; }
-        protected async override void OnActivate()
+        protected async override void OnInitialize()
         {
+            Working = true;
             var commits = await _githubService.GetCommitsAsync(RepositoryId);
+            Working = false;
 
             if (null == commits)
             {
