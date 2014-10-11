@@ -9,3 +9,7 @@ Feature areas
 
 * Repository: news, code, commits (possibly also issues) [use Pivot]
 * Navigate to user: MainView with navigation parameter for login
+
+----
+
+Line breaks in strings for binding

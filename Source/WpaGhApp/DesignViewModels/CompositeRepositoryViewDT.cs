@@ -29,6 +29,18 @@ namespace WpaGhApp.DesignViewModels
                             Name = "christophwille"
                         }
                     }
+                },
+                new GitHubCommit()
+                {
+                    Commit = new Commit()
+                    {
+                        Message = "a long commit with \r\n a wrap in it",
+                        Author = new Signature()
+                        {
+                            Date = DateTime.Now,
+                            Name = "christophwille"
+                        }
+                    }
                 }
             });
 
@@ -40,7 +52,15 @@ namespace WpaGhApp.DesignViewModels
                     Assignee = new User()
                     {
                         Login = "christophwille"
-                    }
+                    },
+                },
+                new Issue()
+                {
+                    Title = "We do not support multiline. It will simply be cut off at screen size",
+                    Assignee = new User()
+                    {
+                        Login = "dgrunwald"
+                    },
                 }
             });
         }

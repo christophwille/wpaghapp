@@ -127,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Repository\RepositoryInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Repository\RepositoryIssuesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +158,7 @@
     <Compile Include="DesignViewModels\MainViewModelDT.cs" />
     <Compile Include="DesignViewModels\NewsViewModelDT.cs" />
     <Compile Include="DesignViewModels\RepositoriesViewModelDT.cs" />
+    <Compile Include="DesignViewModels\RepositoryInfoViewModelDT.cs" />
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
@@ -188,9 +193,11 @@
     <Compile Include="ViewModels\Main\NewsViewModel.cs" />
     <Compile Include="ViewModels\Main\RepositoriesViewModel.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryCommitsViewModelBindings.cs" />
+    <Compile Include="ViewModels\Repository\IRepositoryInfoViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryIssuesViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\RepositoryCommitsViewModel.cs" />
+    <Compile Include="ViewModels\Repository\RepositoryInfoViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryIssuesViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
@@ -222,6 +229,9 @@
     </Compile>
     <Compile Include="Views\Repository\RepositoryCommitsView.xaml.cs">
       <DependentUpon>RepositoryCommitsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Repository\RepositoryInfoView.xaml.cs">
+      <DependentUpon>RepositoryInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Repository\RepositoryIssuesView.xaml.cs">
       <DependentUpon>RepositoryIssuesView.xaml</DependentUpon>

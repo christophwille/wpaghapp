@@ -23,14 +23,23 @@
                     <StackPanel Margin="0,0,0,9.5">
                         <TextBlock
                                     Text="{Binding Commit.Message}"
+                                    TextWrapping="NoWrap"
                                     Pivot.SlideInAnimationGroup="1"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemTextBlockStyle}"/>
-                        <TextBlock
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
                                     Text="{Binding Commit.Author.Date}"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    Margin="0,0,10,0"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
+                            <TextBlock
+                                    Text="{Binding Commit.Author.Name}"
                                     Pivot.SlideInAnimationGroup="2"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

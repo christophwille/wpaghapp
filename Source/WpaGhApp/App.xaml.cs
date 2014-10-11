@@ -63,6 +63,7 @@ namespace WpaGhApp
                 .PerRequest<RepositoryViewModel>()
                     .PerRequest<RepositoryCommitsViewModel>()
                     .PerRequest<RepositoryIssuesViewModel>()
+                    .PerRequest<RepositoryInfoViewModel>()
                 .PerRequest<AboutViewModel>()
                 .PerRequest<AuthorizeViewModel>()
                 .PerRequest<HtmlUrlViewModel>();
