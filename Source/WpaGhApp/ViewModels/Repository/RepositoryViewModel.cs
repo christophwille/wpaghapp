@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using WpaGhApp.Common;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Repository
 {
-    public class RepositoryViewModel : Conductor<IScreen>.Collection.OneActive, IRepositoryViewModelBindings
+    public class RepositoryViewModel : Conductor<IScreen>.Collection.OneActive, IRepositoryViewModelBindings, IStateEnabledViewModel
     {
         private readonly INavigationService _navigationService;
         private readonly IResourceLoader _loader;
@@ -61,6 +65,38 @@ namespace WpaGhApp.ViewModels.Repository
             Items.Add(_vmInfo);
             Items.Add(_vmCommits);
             Items.Add(_vmIssues);
+        }
+
+        public void LoadState(string jsonState)
+        {
+            var state = JsonConvert.DeserializeObject<MainViewModelState>(jsonState);
+            if (null == state) return;
+
+            if (null != state.Commits)
+            {
+                _vmCommits.Commits = new ObservableCollection<Octokit.GitHubCommit>(state.Commits);
+            }
+            if (null != state.Issues)
+            {
+                _vmIssues.Issues = new ObservableCollection<Octokit.Issue>(state.Issues);
+            }
+
+            // Do this last as this would call OnInitialize right away before restoring sub-state
+            var activeItem = Items.ElementAtOrDefault(state.ActiveItemIndex);
+            ActiveItem = activeItem;
+        }
+
+        public string SaveState()
+        {
+            var state = new MainViewModelState()
+            {
+                ActiveItemIndex = Items.IndexOf(ActiveItem)
+            };
+
+            if (null != _vmCommits.Commits) state.Commits = _vmCommits.Commits.ToList();
+            if (null != _vmIssues.Issues) state.Issues = _vmIssues.Issues.ToList();
+
+            return JsonConvert.SerializeObject(state);
         }
     }
 }

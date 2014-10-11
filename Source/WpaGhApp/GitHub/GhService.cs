@@ -52,6 +52,11 @@ namespace WpaGhApp.Github
                 T computed = await func().ConfigureAwait(false);
                 return computed;
             }
+            catch (AuthorizationException ex)
+            {
+                // on eg invalid bearer token
+                SetLastError(ex);
+            }
             catch (Exception ex)
             {
                 SetLastError(ex);

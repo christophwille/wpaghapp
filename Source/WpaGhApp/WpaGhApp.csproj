@@ -83,10 +83,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Page Include="PivotPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,10 +141,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\IStateEnabledViewModel.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\ProgressBehavior.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\StateEnabledPage.cs" />
+    <Compile Include="Common\StateHelper.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="DataModel\SampleDataSource.cs" />
     <Compile Include="DesignViewModels\AboutViewModelDT.cs" />
@@ -165,14 +163,12 @@
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
+    <Compile Include="Models\MainViewModelState.cs" />
     <Compile Include="Services\DefaultMessageService.cs" />
     <Compile Include="Services\IGitHubService.cs" />
     <Compile Include="GitHub\OAuthTokenResponse.cs" />
     <Compile Include="GitHub\TokenSecurityInfo.cs" />
     <Compile Include="GitHub\VaultManager.cs" />
-    <Compile Include="PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GitHub\GhService.OAuth.cs" />
     <Compile Include="Services\DefaultResourceLoader.cs" />

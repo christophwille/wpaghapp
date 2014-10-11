@@ -26,6 +26,7 @@ namespace WpaGhApp.Github
             // Delete the now "old" code and access token info record from the vault before proceeding
             VaultManager.Delete(VaultTokenCodeResourceKey, VaultDefaultUnusedUserName);
             VaultManager.Delete(VaultTokenInfoResourceKey, VaultDefaultUnusedUserName);
+            _gitHubClient.Credentials = Credentials.Anonymous;
 
             var uri = String.Format("https://github.com/login/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}&state={3}",
                         GhOAuthConfiguration.ClientId,

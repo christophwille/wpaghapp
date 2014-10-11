@@ -33,8 +33,17 @@ namespace WpaGhApp.ViewModels.Repository
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
 
-        public ObservableCollection<Octokit.GitHubCommit> Commits { get; private set; }
+        public ObservableCollection<Octokit.GitHubCommit> Commits { get; set; }
         protected async override void OnInitialize()
+        {
+            // Initialize only when not restoring (on refresh set Commits to null first)
+            if (null == Commits)
+            {
+                await LoadCommitsAsync();
+            }
+        }
+
+        async Task LoadCommitsAsync()
         {
             Working = true;
             var commits = await _githubService.GetCommitsAsync(RepositoryId);
