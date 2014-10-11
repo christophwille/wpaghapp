@@ -61,6 +61,8 @@ namespace WpaGhApp
                     .PerRequest<FollowersViewModel>()
                     .PerRequest<FollowingViewModel>()
                 .PerRequest<RepositoryViewModel>()
+                    .PerRequest<RepositoryCommitsViewModel>()
+                    .PerRequest<RepositoryIssuesViewModel>()
                 .PerRequest<AboutViewModel>()
                 .PerRequest<AuthorizeViewModel>();
         }

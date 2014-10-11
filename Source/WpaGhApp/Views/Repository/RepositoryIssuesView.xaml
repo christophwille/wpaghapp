@@ -1,33 +1,33 @@
 ﻿<UserControl
-    x:Class="WpaGhApp.Views.Main.RepositoriesView"
+    x:Class="WpaGhApp.Views.Repository.RepositoryIssuesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WpaGhApp.Views.Main"
+    xmlns:local="using:WpaGhApp.Views.Repository"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
-    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:RepositoriesViewModelDT, IsDesignTimeCreatable=True}}"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:CompositeRepositoryViewDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
     d:DesignWidth="400">
     
     <Grid>
         <ListView
-              ItemsSource="{Binding Repositories}"
+              ItemsSource="{Binding Issues}"
               IsItemClickEnabled="True"
-              micro:Message.Attach="[Event ItemClick] = [Action SelectRepository($eventArgs)]"
+              micro:Message.Attach="[Event ItemClick] = [Action SelectIssue($eventArgs)]"
               ContinuumNavigationTransitionInfo.ExitElementContainer="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,9.5">
                         <TextBlock
-                                    Text="{Binding Name}"
+                                    Text="{Binding Title}"
                                     Pivot.SlideInAnimationGroup="1"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemTextBlockStyle}"/>
                         <TextBlock
-                                    Text="{Binding Description}"
+                                    Text="{Binding Assignee.Login}"
                                     Pivot.SlideInAnimationGroup="2"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemContentTextBlockStyle}"/>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.Github
@@ -112,6 +113,26 @@ namespace WpaGhApp.Github
                 .ConfigureAwait(false);
 
             return following;
+        }
+
+        public async Task<IReadOnlyList<GitHubCommit>> GetCommitsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers)
+        {
+            await EnsureCredentialsAsync().ConfigureAwait(false);
+
+            var commits = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Repository.Commits.GetAll(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName))
+                .ConfigureAwait(false);
+
+            return commits;
+        }
+
+        public async Task<IReadOnlyList<Issue>> GetIssuesAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers)
+        {
+            await EnsureCredentialsAsync().ConfigureAwait(false);
+
+            var issues = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Issue.GetForRepository(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName))
+                .ConfigureAwait(false);
+
+            return issues;
         }
     }
 }

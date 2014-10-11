@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
-using Newtonsoft.Json;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
-using WpaGhApp.ViewModels.Repository;
 
-namespace WpaGhApp.ViewModels.Main
+namespace WpaGhApp.ViewModels.Repository
 {
-    public class RepositoriesViewModel: Screen, IRepositoriesViewModelBindings
+    public class RepositoryIssuesViewModel : Screen, IRepositoryIssuesViewModelBindings, IViewModelWithRepositoryId
     {
         private readonly IResourceLoader _loader;
         private readonly IGitHubService _githubService;
         private readonly IMessageService _messageService;
         private readonly INavigationService _navigationService;
 
-        public RepositoriesViewModel(IResourceLoader loader, IGitHubService githubService, 
+        public RepositoryIssuesViewModel(IResourceLoader loader, IGitHubService githubService,
             IMessageService messageService, INavigationService navigationService)
         {
             _loader = loader;
@@ -29,32 +26,34 @@ namespace WpaGhApp.ViewModels.Main
             _messageService = messageService;
             _navigationService = navigationService;
 
-            DisplayName = "repositories";
+            DisplayName = "issues";
         }
 
-        public ObservableCollection<Octokit.Repository> Repositories { get; private set; }
+        public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
+
+        public ObservableCollection<Octokit.Issue> Issues { get; private set; }
         protected async override void OnActivate()
         {
-            var repos = await _githubService.GetRepositoriesAsync();
+            var issues = await _githubService.GetIssuesAsync(RepositoryId);
 
-            if (null == repos)
+            if (null == issues)
             {
                 await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);
             }
             else
             {
-                Repositories = new ObservableCollection<Octokit.Repository>(repos);
+                Issues = new ObservableCollection<Octokit.Issue>(issues);
             }
         }
 
-        public void SelectRepository(ItemClickEventArgs eventArgs)
+        public void SelectIssue(ItemClickEventArgs eventArgs)
         {
-            var repository = eventArgs.ClickedItem as Octokit.Repository;
-            if (null == repository) return;
-            
-            _navigationService.UriFor<RepositoryViewModel>()
-                .WithParam(vm => vm.RepositoryJson, JsonConvert.SerializeObject(repository))
-                .Navigate();
+            var issue = eventArgs.ClickedItem as Octokit.Issue;
+            if (null == issue) return;
+
+            //_navigationService.UriFor<RepositoryViewModel>()
+            //    .WithParam(vm => vm.RepositoryJson, JsonConvert.SerializeObject(repository))
+            //    .Navigate();
         }
     }
 }

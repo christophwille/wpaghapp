@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 
 namespace WpaGhApp.Services
 {
@@ -20,5 +21,8 @@ namespace WpaGhApp.Services
         Task<IReadOnlyList<Repository>> GetRepositoriesAsync();
         Task<IReadOnlyList<User>> GetFollowersAsync();
         Task<IReadOnlyList<User>> GetFollowingAsync();
+
+        Task<IReadOnlyList<GitHubCommit>> GetCommitsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);
+        Task<IReadOnlyList<Issue>> GetIssuesAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);
     }
 }

@@ -119,6 +119,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Repository\RepositoryCommitsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Repository\RepositoryIssuesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Repository\RepositoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,12 +145,14 @@
     <Compile Include="DataModel\SampleDataSource.cs" />
     <Compile Include="DesignViewModels\AboutViewModelDT.cs" />
     <Compile Include="DesignViewModels\AuthorizeViewModelDT.cs" />
+    <Compile Include="DesignViewModels\CompositeRepositoryViewDT.cs" />
     <Compile Include="DesignViewModels\FollowViewModelDT.cs" />
     <Compile Include="DesignViewModels\MainViewModelDT.cs" />
     <Compile Include="DesignViewModels\NewsViewModelDT.cs" />
     <Compile Include="DesignViewModels\RepositoriesViewModelDT.cs" />
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
+    <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
     <Compile Include="Services\DefaultMessageService.cs" />
     <Compile Include="Services\IGitHubService.cs" />
     <Compile Include="GitHub\OAuthTokenResponse.cs" />
@@ -160,6 +170,7 @@
     <Compile Include="ViewModels\AuthorizeViewModel.cs" />
     <Compile Include="ViewModels\IAboutViewModelBindings.cs" />
     <Compile Include="ViewModels\IAuthorizeViewModel.cs" />
+    <Compile Include="ViewModels\IViewModelWithRepositoryId.cs" />
     <Compile Include="ViewModels\Main\FollowersViewModel.cs" />
     <Compile Include="ViewModels\Main\FollowingViewModel.cs" />
     <Compile Include="ViewModels\Main\FollowViewModelBase.cs" />
@@ -171,6 +182,11 @@
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="ViewModels\Main\NewsViewModel.cs" />
     <Compile Include="ViewModels\Main\RepositoriesViewModel.cs" />
+    <Compile Include="ViewModels\Repository\IRepositoryCommitsViewModelBindings.cs" />
+    <Compile Include="ViewModels\Repository\IRepositoryIssuesViewModelBindings.cs" />
+    <Compile Include="ViewModels\Repository\IRepositoryViewModelBindings.cs" />
+    <Compile Include="ViewModels\Repository\RepositoryCommitsViewModel.cs" />
+    <Compile Include="ViewModels\Repository\RepositoryIssuesViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -195,6 +211,12 @@
     </Compile>
     <Compile Include="Views\Main\RepositoriesView.xaml.cs">
       <DependentUpon>RepositoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Repository\RepositoryCommitsView.xaml.cs">
+      <DependentUpon>RepositoryCommitsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Repository\RepositoryIssuesView.xaml.cs">
+      <DependentUpon>RepositoryIssuesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Repository\RepositoryView.xaml.cs">
       <DependentUpon>RepositoryView.xaml</DependentUpon>
@@ -265,9 +287,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

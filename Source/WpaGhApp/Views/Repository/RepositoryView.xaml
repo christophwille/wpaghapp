@@ -5,10 +5,32 @@
     xmlns:local="using:WpaGhApp.Views.Repository"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     mc:Ignorable="d"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:CompositeRepositoryViewDT, IsDesignTimeCreatable=True}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
     <Grid>
-
+        <Pivot
+               x:Name="Items"
+               Title="{Binding RepositoryName}" 
+               SelectedItem="{Binding ActiveItem, Mode=TwoWay}"
+               CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+        </Pivot>
     </Grid>
 </Page>
