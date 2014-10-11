@@ -139,5 +139,10 @@ namespace WpaGhApp.Github
 
             return issues;
         }
+
+        public Task GetContentsAsync()
+        {
+            // .Contents API not implemented. https://developer.github.com/v3/repos/contents/#get-contents
+        }
     }
 }
