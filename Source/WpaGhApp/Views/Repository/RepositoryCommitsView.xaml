@@ -24,6 +24,8 @@
                         <TextBlock
                                     Text="{Binding Commit.Message}"
                                     TextWrapping="NoWrap"
+                                    TextTrimming="WordEllipsis"
+                                    MaxLines="1"
                                     Pivot.SlideInAnimationGroup="1"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemTextBlockStyle}"/>
