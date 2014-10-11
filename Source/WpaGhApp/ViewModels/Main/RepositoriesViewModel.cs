@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Octokit;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
@@ -25,7 +24,7 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "repositories";
         }
 
-        public ObservableCollection<Repository> Repositories { get; private set; }
+        public ObservableCollection<Octokit.Repository> Repositories { get; private set; }
         protected async override void OnActivate()
         {
             var repos = await _githubService.GetRepositoriesAsync();
@@ -36,7 +35,7 @@ namespace WpaGhApp.ViewModels.Main
             }
             else
             {
-                Repositories = new ObservableCollection<Repository>(repos);
+                Repositories = new ObservableCollection<Octokit.Repository>(repos);
             }
         }
     }

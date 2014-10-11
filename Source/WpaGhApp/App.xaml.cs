@@ -22,6 +22,7 @@ using WpaGhApp.Github;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels;
 using WpaGhApp.ViewModels.Main;
+using WpaGhApp.ViewModels.Repository;
 using WpaGhApp.Views;
 using WpaGhApp.Views.Main;
 
@@ -59,6 +60,7 @@ namespace WpaGhApp
                     .PerRequest<RepositoriesViewModel>()
                     .PerRequest<FollowersViewModel>()
                     .PerRequest<FollowingViewModel>()
+                .PerRequest<RepositoryViewModel>()
                 .PerRequest<AboutViewModel>()
                 .PerRequest<AuthorizeViewModel>();
         }
