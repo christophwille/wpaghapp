@@ -16,10 +16,13 @@ if you think that will help me track down a bug quicker, or if that includes inf
 ## Features
 
 * `Authorization` - uses OAuth (the main driver for me to implement my own WPA for GitHub)
-* `User` - show own repositories, followers and following (private news seems to be impossible via OAuth)
+* `User` - show own repositories, followers and following
+* `Repository` - show statistics, commits and issues
 
-The plan is to allow drill-down into repositories (news, code, issues) as well as other users (which then would look like your account).
-Currently, no drill-down is possible, only a listing of items.
+Planned, but currently not implementable:
+
+* Repository/explore source code: Octokit.net doesn't yet support the get-contents APIs
+* User/private news: not yet possible with OAuth according to service documentation
 
 ## Screenshots
 

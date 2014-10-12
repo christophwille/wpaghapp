@@ -18,6 +18,12 @@ namespace WpaGhApp.Github
         private const string VaultTokenCodeResourceKey = "tokencode";
         private const string VaultTokenInfoResourceKey = "accesstokeninfo";
 
+        private string DeclareScopes()
+        {
+            // See https://developer.github.com/v3/oauth/#scopes
+            return "user,repo";
+        }
+
         public void StartOAuthFlow()
         {
             string state = Guid.NewGuid().ToString("N");
@@ -31,7 +37,7 @@ namespace WpaGhApp.Github
             var uri = String.Format("https://github.com/login/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}&state={3}",
                         GhOAuthConfiguration.ClientId,
                         GhOAuthConfiguration.RedirectUri,
-                        "user,repo",
+                        DeclareScopes(),
                         state);
 
             WebAuthenticationBroker.AuthenticateAndContinue(new Uri(uri), 
