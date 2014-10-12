@@ -97,5 +97,17 @@ namespace WpaGhApp.Common
 
             return null;
         }
+
+        public static void FindAndRegister(DependencyObject obj)
+        {
+            if (!(obj is IStateEnabledPageChildElement)) throw new ArgumentException("Element must support state");
+
+            var stateEnabledParentPage = FindAsParent(obj);
+
+            if (null != stateEnabledParentPage)
+            {
+                stateEnabledParentPage.RegisterForSaveStateAndImmediateLoad(obj as IStateEnabledPageChildElement);
+            }
+        }
     }
 }

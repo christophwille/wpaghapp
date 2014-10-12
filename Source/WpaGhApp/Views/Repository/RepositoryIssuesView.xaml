@@ -21,6 +21,7 @@
     
     <Grid>
         <ListView
+              x:Name="IssuesListView"
               ItemsSource="{Binding Issues}"
               IsItemClickEnabled="True"
               micro:Message.Attach="[Event ItemClick] = [Action SelectIssue($eventArgs)]"

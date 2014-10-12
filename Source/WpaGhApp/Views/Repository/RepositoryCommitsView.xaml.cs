@@ -24,22 +24,16 @@ namespace WpaGhApp.Views.Repository
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             _scrollViewerCommitsListView = ListViewVerticalScrollPositionExtensions.FindVisualChild<ScrollViewer>(CommitsListView);
-            
-            var stateEnabledParentPage = StateEnabledPage.FindAsParent(this);
-            if (null != stateEnabledParentPage)
-            {
-                stateEnabledParentPage.RegisterForSaveStateAndImmediateLoad(this);
-            }
+            StateEnabledPage.FindAndRegister(this);
         }
 
-        private double _verticalOffset;
         private const string PageStateKey = "CommitsScrollViewerStateKey";
         public void LoadState(Dictionary<string, object> pageState)
         {
             if (pageState.ContainsKey(PageStateKey))
             {
-                _verticalOffset = (double)pageState[PageStateKey];
-                _scrollViewerCommitsListView.ScrollToVerticalOffset(_verticalOffset);
+                var verticalOffset = (double)pageState[PageStateKey];
+                _scrollViewerCommitsListView.ScrollToVerticalOffset(verticalOffset);
             }
         }
 
