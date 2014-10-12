@@ -24,5 +24,16 @@ namespace WpaGhApp.Views
         {
             this.InitializeComponent();
         }
+
+        private void HtmlContent_OnLoaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void HtmlContent_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        {
+            WebViewProgressRing.IsActive = false;
+            WebViewProgressRing.Visibility = Visibility.Collapsed;
+            HtmlContent.Visibility = Visibility.Visible;
+        }
     }
 }

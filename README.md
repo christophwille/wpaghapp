@@ -16,7 +16,7 @@ if you think that will help me track down a bug quicker, or if that includes inf
 ## Features
 
 * `Authorization` - uses OAuth (the main driver for me to implement my own WPA for GitHub)
-* `User` - show own repositories, followers and following
+* `User` - show own repositories, followers and following (allow drill-down into all three)
 * `Repository` - show statistics, commits and issues
 
 Planned, but currently not implementable:

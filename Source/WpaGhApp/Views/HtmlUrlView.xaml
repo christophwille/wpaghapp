@@ -32,7 +32,19 @@
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <WebView x:Name="HtmlContent" Source="{Binding HtmlUrl}" />
+            <WebView x:Name="HtmlContent" 
+                     Loaded="HtmlContent_OnLoaded"
+                     NavigationCompleted="HtmlContent_OnNavigationCompleted"
+                     Visibility="Collapsed"
+                     Source="{Binding HtmlUrl}" />
+            <ProgressRing Visibility="Visible" 
+                          x:Name="WebViewProgressRing" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center" 
+                          IsActive="True" 
+                          Height="150" 
+                          Width="150" 
+                          Margin="0"/>
         </Grid>
     </Grid>
 </Page>
