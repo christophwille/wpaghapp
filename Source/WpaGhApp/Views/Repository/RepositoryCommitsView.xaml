@@ -21,6 +21,7 @@
 
     <Grid>
         <ListView
+            x:Name="CommitsListView"
               ItemsSource="{Binding Commits}"
               IsItemClickEnabled="True"
               micro:Message.Attach="[Event ItemClick] = [Action SelectCommit($eventArgs)]"

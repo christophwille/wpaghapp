@@ -141,7 +141,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\IStateEnabledPageChildElement.cs" />
     <Compile Include="Common\IStateEnabledViewModel.cs" />
+    <Compile Include="Common\ListViewVerticalScrollPositionExtensions.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\ProgressBehavior.cs" />
     <Compile Include="Common\RelayCommand.cs" />

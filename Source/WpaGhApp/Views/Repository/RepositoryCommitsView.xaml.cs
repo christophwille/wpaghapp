@@ -7,21 +7,45 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+using WpaGhApp.Common;
 
 namespace WpaGhApp.Views.Repository
 {
-    public sealed partial class RepositoryCommitsView : UserControl
+    public sealed partial class RepositoryCommitsView : UserControl, IStateEnabledPageChildElement
     {
         public RepositoryCommitsView()
         {
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
+        }
+
+        // http://blogs.msdn.com/b/priozersk/archive/2012/09/09/how-to-restore-scroll-position-of-the-gridview-when-navigating-back.aspx
+        private ScrollViewer _scrollViewerCommitsListView;
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            _scrollViewerCommitsListView = ListViewVerticalScrollPositionExtensions.FindVisualChild<ScrollViewer>(CommitsListView);
+            
+            var stateEnabledParentPage = StateEnabledPage.FindAsParent(this);
+            if (null != stateEnabledParentPage)
+            {
+                stateEnabledParentPage.RegisterForSaveStateAndImmediateLoad(this);
+            }
+        }
+
+        private double _verticalOffset;
+        private const string PageStateKey = "CommitsScrollViewerStateKey";
+        public void LoadState(Dictionary<string, object> pageState)
+        {
+            if (pageState.ContainsKey(PageStateKey))
+            {
+                _verticalOffset = (double)pageState[PageStateKey];
+                _scrollViewerCommitsListView.ScrollToVerticalOffset(_verticalOffset);
+            }
+        }
+
+        public void SaveState(Dictionary<string, object> pageState)
+        {
+            pageState[PageStateKey] = _scrollViewerCommitsListView.VerticalOffset;
         }
     }
 }
