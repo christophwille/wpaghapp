@@ -69,7 +69,7 @@ namespace WpaGhApp.ViewModels.Repository
 
         public void LoadState(string jsonState)
         {
-            var state = JsonConvert.DeserializeObject<MainViewModelState>(jsonState);
+            var state = JsonConvert.DeserializeObject<RepositoryViewModelState>(jsonState);
             if (null == state) return;
 
             if (null != state.Commits)
@@ -88,7 +88,7 @@ namespace WpaGhApp.ViewModels.Repository
 
         public string SaveState()
         {
-            var state = new MainViewModelState()
+            var state = new RepositoryViewModelState()
             {
                 ActiveItemIndex = Items.IndexOf(ActiveItem)
             };

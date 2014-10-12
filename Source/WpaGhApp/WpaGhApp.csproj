@@ -163,7 +163,7 @@
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
-    <Compile Include="Models\MainViewModelState.cs" />
+    <Compile Include="Models\RepositoryViewModelState.cs" />
     <Compile Include="Services\DefaultMessageService.cs" />
     <Compile Include="Services\IGitHubService.cs" />
     <Compile Include="GitHub\OAuthTokenResponse.cs" />

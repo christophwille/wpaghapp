@@ -143,6 +143,8 @@ namespace WpaGhApp.Github
         public Task GetContentsAsync()
         {
             // .Contents API not implemented. https://developer.github.com/v3/repos/contents/#get-contents
+
+            return Task.FromResult(0);
         }
     }
 }

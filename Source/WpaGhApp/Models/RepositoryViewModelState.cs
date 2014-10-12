@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpaGhApp.Models
 {
-    public class MainViewModelState
+    public class RepositoryViewModelState
     {
         public int ActiveItemIndex { get; set; }
         public List<Octokit.GitHubCommit> Commits { get; set; }
