@@ -32,12 +32,13 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "repositories";
         }
 
+        public string UserLogin { get; set; }
         public bool Working { get; set; }
         public ObservableCollection<Octokit.Repository> Repositories { get; private set; }
         protected async override void OnInitialize()
         {
             Working = true;
-            var repos = await _githubService.GetRepositoriesAsync();
+            var repos = await _githubService.GetRepositoriesAsync(UserLogin);
             Working = false;if (null == repos)
             {
                 await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);

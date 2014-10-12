@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
+    xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
     d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:FollowViewModelDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
@@ -15,6 +16,7 @@
         <ListView
               ItemsSource="{Binding Users}"
               IsItemClickEnabled="True"
+            micro:Message.Attach="[Event ItemClick] = [Action SelectUser($eventArgs)]"
               ContinuumNavigationTransitionInfo.ExitElementContainer="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -90,32 +90,53 @@ namespace WpaGhApp.Github
             throw new NotImplementedException();
         }
 
-        public async Task<IReadOnlyList<Repository>> GetRepositoriesAsync()
+        public async Task<IReadOnlyList<Repository>> GetRepositoriesAsync(string login)
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
-            var repositories = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Repository.GetAllForCurrent())
-                .ConfigureAwait(false);
+            var repositories = await ExecuteWithErrorTrappingAsync(async () =>
+            {
+                if (String.IsNullOrWhiteSpace(login))
+                {
+                    return await _gitHubClient.Repository.GetAllForCurrent().ConfigureAwait(false);
+                }
+                return await _gitHubClient.Repository.GetAllForUser(login).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
 
             return repositories;
         }
 
-        public async Task<IReadOnlyList<User>> GetFollowersAsync()
+        public async Task<IReadOnlyList<User>> GetFollowersAsync(string login)
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
-            var followers = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.User.Followers.GetAllForCurrent())
-                .ConfigureAwait(false);
+            var followers = await ExecuteWithErrorTrappingAsync(async () =>
+            {
+                if (String.IsNullOrWhiteSpace(login))
+                {
+                    return await _gitHubClient.User.Followers.GetAllForCurrent().ConfigureAwait(false);
+                }
+                return await _gitHubClient.User.Followers.GetAll(login).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
 
             return followers;
         }
 
-        public async Task<IReadOnlyList<User>> GetFollowingAsync()
+        public async Task<IReadOnlyList<User>> GetFollowingAsync(string login)
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
-            var following = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.User.Followers.GetFollowingForCurrent())
-                .ConfigureAwait(false);
+            var following = await ExecuteWithErrorTrappingAsync(async () =>
+            {
+                if (String.IsNullOrWhiteSpace(login))
+                {
+                    return await _gitHubClient.User.Followers.GetFollowingForCurrent().ConfigureAwait(false);
+                }
+                return await _gitHubClient.User.Followers.GetFollowing(login).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
 
             return following;
         }

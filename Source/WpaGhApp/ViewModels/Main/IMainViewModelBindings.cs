@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpaGhApp.ViewModels.Main
 {
-    public interface IMainViewModelBindings : IViewModelWithApplicationName
+    public interface IMainViewModelBindings
     {
+        string PageTitle { get; set; }
     }
 }

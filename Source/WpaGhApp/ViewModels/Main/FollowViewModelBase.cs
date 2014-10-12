@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
+using Newtonsoft.Json;
 using Octokit;
 using WpaGhApp.Services;
 
@@ -27,6 +29,7 @@ namespace WpaGhApp.ViewModels.Main
             _navigationService = navigationService;
         }
 
+        public string UserLogin { get; set; }
         public bool Working { get; set; }
         public ObservableCollection<User> Users { get; private set; }
 
@@ -49,6 +52,16 @@ namespace WpaGhApp.ViewModels.Main
         protected virtual Task<IReadOnlyList<User>> GetFollowUsersAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public void SelectUser(ItemClickEventArgs eventArgs)
+        {
+            var user = eventArgs.ClickedItem as Octokit.User;
+            if (null == user) return;
+
+            _navigationService.UriFor<MainViewModel>()
+                .WithParam(vm => vm.UserJson, JsonConvert.SerializeObject(user))
+                .Navigate();
         }
     }
 }

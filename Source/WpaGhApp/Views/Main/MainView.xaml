@@ -37,7 +37,7 @@
     <Grid>
         <Pivot
                x:Name="Items"
-               Title="{Binding ApplicationName}" 
+               Title="{Binding PageTitle}" 
                SelectedItem="{Binding ActiveItem, Mode=TwoWay}"
                CommonNavigationTransitionInfo.IsStaggerElement="True">
             <Pivot.HeaderTemplate>

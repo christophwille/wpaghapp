@@ -11,10 +11,10 @@ namespace WpaGhApp.DesignViewModels
     {
         public MainViewModelDT()
         {
-            ApplicationName = "OCTOCENTRAL";
+            PageTitle = "Your Account";
             
         }
 
-        public string ApplicationName { get; private set; }
+        public string PageTitle { get; set; }
     }
 }

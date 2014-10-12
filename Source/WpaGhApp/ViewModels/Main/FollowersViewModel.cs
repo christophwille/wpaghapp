@@ -19,7 +19,7 @@ namespace WpaGhApp.ViewModels.Main
 
         protected async override Task<IReadOnlyList<User>> GetFollowUsersAsync()
         {
-            return await _githubService.GetFollowersAsync();
+            return await _githubService.GetFollowersAsync(UserLogin);
         }
     }
 }
