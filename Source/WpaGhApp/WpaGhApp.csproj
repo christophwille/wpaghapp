@@ -141,6 +141,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\EtlLogger.cs" />
     <Compile Include="Common\IStateEnabledPageChildElement.cs" />
     <Compile Include="Common\IStateEnabledViewModel.cs" />
     <Compile Include="Common\ListViewVerticalScrollPositionExtensions.cs" />

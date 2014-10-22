@@ -192,7 +192,6 @@
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>ChristophWille.3-BilderCollage</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Ozonwertesterreich</MainPackageIdentityName>
-    <MainPackageIdentityName>ChristophWille.PushDemoBUD</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.RISBundesrechtsterreich</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Sprudelsuche</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Station366</MainPackageIdentityName>
@@ -203,7 +202,7 @@
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>neutral</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.2.0.1</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.5.0.0</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

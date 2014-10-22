@@ -29,7 +29,7 @@ using WpaGhApp.Views.Main;
 namespace WpaGhApp
 {
 
-    public sealed partial class App 
+    public sealed partial class App
     {
         private TransitionCollection transitions;
 
@@ -100,6 +100,14 @@ namespace WpaGhApp
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
+
+            // Initiate Log channel and Log sessions 
+            EtlLogger.GetLogger().InitiateLogger();
+
+            // Delete the logfile which are beyond the dates 
+            EtlLogger.GetLogger().DeleteFile();
+
+            EtlLogger.GetLogger().LogChannel.LogMessage("Starting up in CommonApplicationLaunchAsync");
 #endif
 
             Initialize();
@@ -110,11 +118,10 @@ namespace WpaGhApp
 
             if (previousExecutionState == ApplicationExecutionState.Terminated)
             {
-                resumed = _navigationService.ResumeState();
-
-                // Restore the saved session state only when appropriate.
+                // Restore the saved navigation & session state
                 try
                 {
+                    resumed = _navigationService.ResumeState();
                     await SuspensionManager.RestoreAsync();
                 }
                 catch (SuspensionManagerException)
@@ -156,8 +163,16 @@ namespace WpaGhApp
                     var wabEventArgs = args as WebAuthenticationBrokerContinuationEventArgs;
                     var rootFrame = Window.Current.Content as Frame;
 
-                    var vm = ((AuthorizeView)rootFrame.Content).DataContext as AuthorizeViewModel;
-                    await vm.ContinueAuthorizationAsync(wabEventArgs.WebAuthenticationResult);
+                    if (null != rootFrame && null != wabEventArgs)
+                    {
+                        var authorizeView = ((AuthorizeView)rootFrame.Content);
+
+                        if (null != authorizeView)
+                        {
+                            var vm = authorizeView.DataContext as AuthorizeViewModel;
+                            await vm.ContinueAuthorizationAsync(wabEventArgs.WebAuthenticationResult);
+                        }
+                    }
                 }
             }
         }
@@ -171,11 +186,17 @@ namespace WpaGhApp
 
         protected async override void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            _navigationService.SuspendState();
-
             var deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync();
-            deferral.Complete();
+
+            try
+            {
+                _navigationService.SuspendState();
+                await SuspensionManager.SaveAsync();
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
     }
 }

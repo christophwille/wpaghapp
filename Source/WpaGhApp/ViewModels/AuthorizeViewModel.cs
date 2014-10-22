@@ -43,7 +43,7 @@ namespace WpaGhApp.ViewModels
 
         public async Task ContinueAuthorizationAsync(WebAuthenticationResult result)
         {
-            if (result.ResponseStatus != WebAuthenticationStatus.Success)
+            if (null == result || result.ResponseStatus != WebAuthenticationStatus.Success)
             {
                 InfoMessage = _loader.GetString("AuthZ_OAuthFailed");
                 return;
