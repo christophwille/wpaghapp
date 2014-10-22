@@ -49,10 +49,10 @@ namespace WpaGhApp
             _container = new WinRTContainer();
             _container.RegisterWinRTServices();
 
-            _container.RegisterInstance(typeof(IResourceLoader), null, new DefaultResourceLoader());
-            _container.RegisterInstance(typeof(IGitHubService), null, new GhService());
-
             _container.RegisterPerRequest(typeof(IMessageService), null, typeof(DefaultMessageService));
+
+            _container.RegisterInstance(typeof(IResourceLoader), null, new DefaultResourceLoader());
+            _container.RegisterSingleton(typeof(IGitHubService), null, typeof(GhService));
 
             _container
                 .PerRequest<MainViewModel>()

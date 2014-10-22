@@ -36,9 +36,9 @@ namespace WpaGhApp.ViewModels
         public string InfoMessage { get; set; }
         public bool ShowAuthorizeButton { get; set; }
 
-        public void AuthorizeApp()
+        public async void AuthorizeApp()
         {
-            _githubService.StartOAuthFlow();
+            await _githubService.StartOAuthFlow();
         }
 
         public async Task ContinueAuthorizationAsync(WebAuthenticationResult result)

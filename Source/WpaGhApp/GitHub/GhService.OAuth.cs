@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -24,26 +26,52 @@ namespace WpaGhApp.Github
             return "user,repo";
         }
 
-        public void StartOAuthFlow()
+        public string FormatGitHubLoginUrl(string clientId, string redirectUri, string scopes, string state)
         {
-            string state = Guid.NewGuid().ToString("N");
-            VaultManager.Save(VaultStateResourceKey, VaultDefaultUnusedUserName, state);
-
-            // Delete the now "old" code and access token info record from the vault before proceeding
-            VaultManager.Delete(VaultTokenCodeResourceKey, VaultDefaultUnusedUserName);
-            VaultManager.Delete(VaultTokenInfoResourceKey, VaultDefaultUnusedUserName);
-            _gitHubClient.Credentials = Credentials.Anonymous;
-
-            var uri = String.Format("https://github.com/login/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}&state={3}",
-                        GhOAuthConfiguration.ClientId,
-                        GhOAuthConfiguration.RedirectUri,
-                        DeclareScopes(),
+            return String.Format("https://github.com/login/oauth/authorize?client_id={0}&redirect_uri={1}&scope={2}&state={3}",
+                        clientId,
+                        redirectUri,
+                        scopes,
                         state);
+        }
 
-            WebAuthenticationBroker.AuthenticateAndContinue(new Uri(uri), 
-                new Uri(GhOAuthConfiguration.RedirectUri), 
-                null, 
-                WebAuthenticationOptions.None);
+        public async Task StartOAuthFlow()
+        {
+            Exception exIfAny = null;
+
+            try
+            {
+                string state = Guid.NewGuid().ToString("N");
+                VaultManager.Save(VaultStateResourceKey, VaultDefaultUnusedUserName, state);
+
+                // Delete the now "old" code and access token info record from the vault before proceeding
+                VaultManager.Delete(VaultTokenCodeResourceKey, VaultDefaultUnusedUserName);
+                VaultManager.Delete(VaultTokenInfoResourceKey, VaultDefaultUnusedUserName);
+                _gitHubClient.Credentials = Credentials.Anonymous;
+
+                var uri = FormatGitHubLoginUrl(GhOAuthConfiguration.ClientId,
+                            GhOAuthConfiguration.RedirectUri,
+                            DeclareScopes(),
+                            state);
+
+                Uri requestUri = new Uri(uri);
+                Uri callbackUri = new Uri(GhOAuthConfiguration.RedirectUri);
+
+                WebAuthenticationBroker.AuthenticateAndContinue(requestUri,
+                    callbackUri,
+                    null,
+                    WebAuthenticationOptions.None);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                exIfAny = ex;
+            }
+
+            if (null != exIfAny)
+            {
+                await _messageService.ShowAsync(exIfAny.Message);
+            }
         }
 
         public async Task<bool> CompleteOAuthFlowAsync(string responseData)

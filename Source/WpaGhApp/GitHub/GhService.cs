@@ -12,13 +12,15 @@ namespace WpaGhApp.Github
 {
     public partial class GhService : IGitHubService
     {
+        private readonly IMessageService _messageService;
         private const string ProductHeaderName = "OctoCentral";
         private const string ProductHeaderValue = "1.0.0.0";
 
         private readonly GitHubClient _gitHubClient;
 
-        public GhService()
+        public GhService(IMessageService messageService)
         {
+            _messageService = messageService;
             _gitHubClient = new GitHubClient(new ProductHeaderValue(ProductHeaderName, ProductHeaderValue))
             {
                 Credentials = Credentials.Anonymous

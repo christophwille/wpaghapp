@@ -13,7 +13,7 @@ namespace WpaGhApp.Services
         string LastErrorMessage { get; }
         string LastExceptionDetails { get; }
 
-        void StartOAuthFlow();
+        Task StartOAuthFlow();
         Task<bool> CompleteOAuthFlowAsync(string responseData);
 
 

@@ -54,7 +54,7 @@ namespace WpaGhApp.ViewModels.Repository
 
         public Octokit.Repository Repository { get; private set; }
 
-        protected async override void OnInitialize()
+        protected override void OnInitialize()
         {
             base.OnInitialize();
 

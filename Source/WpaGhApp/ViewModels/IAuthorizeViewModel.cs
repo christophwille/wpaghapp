@@ -8,7 +8,6 @@ namespace WpaGhApp.ViewModels
 {
     public interface IAuthorizeViewModelBindings : IViewModelWithApplicationName, IViewModelWithProgessIndicator
     {
-        bool Working { get; set; }
         string InfoMessage { get; set; }
         bool ShowAuthorizeButton { get; set; }
     }
