@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Newtonsoft.Json;
 using WpaGhApp.Common;
 using WpaGhApp.Services;
+using WpaGhApp.ViewModels.Main;
 
 namespace WpaGhApp.ViewModels.Org
 {
@@ -15,14 +16,16 @@ namespace WpaGhApp.ViewModels.Org
         private readonly INavigationService _navigationService;
         private readonly IResourceLoader _loader;
         private readonly MembersViewModel _vmMembers;
+        private readonly RepositoriesViewModel _vmRepos;
 
         public OrgViewModel(INavigationService navigationService, IResourceLoader loader,
-            MembersViewModel vmMembers)
+            MembersViewModel vmMembers, RepositoriesViewModel vmRepos)
         {
             _navigationService = navigationService;
             _loader = loader;
 
             _vmMembers = vmMembers;
+            _vmRepos = vmRepos;
         }
 
         protected override void OnInitialize()
@@ -32,8 +35,10 @@ namespace WpaGhApp.ViewModels.Org
             if (null != Org)
             {
                 _vmMembers.Login = Org.Login;
+                _vmRepos.UserLogin = Org.Login;
             }
 
+            Items.Add(_vmRepos);
             Items.Add(_vmMembers);
         }
 
