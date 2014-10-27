@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using WpaGhApp.Common;
 using System;
@@ -196,6 +197,10 @@ namespace WpaGhApp
             {
                 _navigationService.SuspendState();
                 await SuspensionManager.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
             }
             finally
             {
