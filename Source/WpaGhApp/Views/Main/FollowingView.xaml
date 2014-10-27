@@ -19,6 +19,6 @@
     </interactivity:Interaction.Behaviors>
     
     <Grid>
-        <local:CommonFollowControl DataContext="{Binding}" />
+        <local:CommonAccountControl DataContext="{Binding}" />
     </Grid>
 </UserControl>

@@ -1,13 +1,13 @@
 ﻿<UserControl
-    x:Class="WpaGhApp.Views.Main.FollowersView"
+    x:Class="WpaGhApp.Views.Main.OrgsListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WpaGhApp.Views.Main"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:common="using:WpaGhApp.Common"
+    xmlns:designViewModels="using:WpaGhApp.DesignViewModels"
     mc:Ignorable="d"
     d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:FollowViewModelDT, IsDesignTimeCreatable=True}}"
     d:DesignHeight="300"
@@ -15,11 +15,10 @@
 
     <interactivity:Interaction.Behaviors>
         <common:ProgressBehavior IsVisible="{Binding Working}"
-                                Text="Loading followers..."/>
+                                Text="Loading organizations..."/>
     </interactivity:Interaction.Behaviors>
-    
+
     <Grid>
         <local:CommonAccountControl DataContext="{Binding}" />
     </Grid>
-    
 </UserControl>

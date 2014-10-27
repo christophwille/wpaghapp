@@ -21,6 +21,8 @@ namespace WpaGhApp.Services
         Task<IReadOnlyList<Repository>> GetRepositoriesAsync(string login);
         Task<IReadOnlyList<User>> GetFollowersAsync(string login);
         Task<IReadOnlyList<User>> GetFollowingAsync(string login);
+        Task<IReadOnlyList<Organization>> GetOrganizationsAsync(string login);
+        Task<IReadOnlyList<User>> GetOrganizationMembersAsync(string org);
 
         Task<IReadOnlyList<GitHubCommit>> GetCommitsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);
         Task<IReadOnlyList<Issue>> GetIssuesAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);

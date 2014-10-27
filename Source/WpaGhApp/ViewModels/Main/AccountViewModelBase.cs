@@ -12,14 +12,14 @@ using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
 {
-    public class FollowViewModelBase : Screen, IFollowViewModelBindings
+    public class AccountViewModelBase : Screen, IAccountViewModelBindings
     {
         protected readonly IResourceLoader _loader;
         protected readonly INavigationService _navigationService;
         protected readonly IGitHubService _githubService;
         protected readonly IMessageService _messageService;
 
-        public FollowViewModelBase(IGitHubService githubService, IMessageService messageService, 
+        public AccountViewModelBase(IGitHubService githubService, IMessageService messageService, 
             IResourceLoader loader,
             INavigationService navigationService)
         {
@@ -29,14 +29,14 @@ namespace WpaGhApp.ViewModels.Main
             _navigationService = navigationService;
         }
 
-        public string UserLogin { get; set; }
+        public string Login { get; set; }
         public bool Working { get; set; }
-        public ObservableCollection<User> Users { get; private set; }
+        public ObservableCollection<Account> Accounts { get; private set; }
 
         protected override async void OnInitialize()
         {
             Working = true;
-            var users = await GetFollowUsersAsync();
+            var users = await GetAccountsAsync();
             Working = false;
 
             if (null == users)
@@ -45,20 +45,33 @@ namespace WpaGhApp.ViewModels.Main
             }
             else
             {
-                Users = new ObservableCollection<User>(users);
+                Accounts = new ObservableCollection<Account>(users);
             }
         }
 
-        protected virtual Task<IReadOnlyList<User>> GetFollowUsersAsync()
+        protected virtual Task<IReadOnlyList<Account>> GetAccountsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public void SelectUser(ItemClickEventArgs eventArgs)
+        public void SelectAccount(ItemClickEventArgs eventArgs)
         {
-            var user = eventArgs.ClickedItem as Octokit.User;
-            if (null == user) return;
+            var account = eventArgs.ClickedItem as Octokit.Account;
+            if (null == account) return;
 
+            NavigateToAccount(account);
+        }
+
+        protected virtual void NavigateToAccount(Octokit.Account account)
+        {
+            if (account is Octokit.User)
+            {
+                NavigateToUser(account as Octokit.User);
+            }
+        }
+
+        protected void NavigateToUser(Octokit.User user)
+        {
             _navigationService.UriFor<MainViewModel>()
                 .WithParam(vm => vm.UserJson, JsonConvert.SerializeObject(user))
                 .Navigate();

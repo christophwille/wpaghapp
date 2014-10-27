@@ -143,6 +143,34 @@ namespace WpaGhApp.Github
             return following;
         }
 
+        public async Task<IReadOnlyList<Organization>> GetOrganizationsAsync(string login)
+        {
+            await EnsureCredentialsAsync().ConfigureAwait(false);
+
+            var orgs = await ExecuteWithErrorTrappingAsync(async () =>
+            {
+                if (String.IsNullOrWhiteSpace(login))
+                {
+                    return await _gitHubClient.Organization.GetAllForCurrent().ConfigureAwait(false);
+                }
+                return await _gitHubClient.Organization.GetAll(login).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
+
+            return orgs;
+        }
+
+        public async Task<IReadOnlyList<User>> GetOrganizationMembersAsync(string org)
+        {
+            await EnsureCredentialsAsync().ConfigureAwait(false);
+
+            var members = await ExecuteWithErrorTrappingAsync(async () => 
+                await _gitHubClient.Organization.Member.GetAll(org).ConfigureAwait(false))
+                .ConfigureAwait(false);
+
+            return members;
+        }
+
         public async Task<IReadOnlyList<GitHubCommit>> GetCommitsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers)
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);

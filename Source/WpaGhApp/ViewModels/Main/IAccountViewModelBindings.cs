@@ -8,8 +8,9 @@ using Octokit;
 
 namespace WpaGhApp.ViewModels.Main
 {
-    public interface IFollowViewModelBindings : IViewModelWithProgessIndicator
+    public interface IAccountViewModelBindings : IViewModelWithProgessIndicator
     {
-        ObservableCollection<User> Users { get; }
+        // User, Organization derive from Account
+        ObservableCollection<Octokit.Account> Accounts { get; }
     }
 }

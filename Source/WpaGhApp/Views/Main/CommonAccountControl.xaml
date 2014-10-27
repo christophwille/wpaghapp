@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WpaGhApp.Views.Main.CommonFollowControl"
+    x:Class="WpaGhApp.Views.Main.CommonAccountControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WpaGhApp.Views.Main"
@@ -14,9 +14,9 @@
     
     <Grid>
         <ListView
-              ItemsSource="{Binding Users}"
+              ItemsSource="{Binding Accounts}"
               IsItemClickEnabled="True"
-            micro:Message.Attach="[Event ItemClick] = [Action SelectUser($eventArgs)]"
+            micro:Message.Attach="[Event ItemClick] = [Action SelectAccount($eventArgs)]"
               ContinuumNavigationTransitionInfo.ExitElementContainer="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

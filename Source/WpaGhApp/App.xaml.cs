@@ -22,6 +22,7 @@ using WpaGhApp.Github;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels;
 using WpaGhApp.ViewModels.Main;
+using WpaGhApp.ViewModels.Org;
 using WpaGhApp.ViewModels.Repository;
 using WpaGhApp.Views;
 using WpaGhApp.Views.Main;
@@ -60,10 +61,13 @@ namespace WpaGhApp
                     .PerRequest<RepositoriesViewModel>()
                     .PerRequest<FollowersViewModel>()
                     .PerRequest<FollowingViewModel>()
+                    .PerRequest<OrgsListViewModel>()
                 .PerRequest<RepositoryViewModel>()
                     .PerRequest<RepositoryCommitsViewModel>()
                     .PerRequest<RepositoryIssuesViewModel>()
                     .PerRequest<RepositoryInfoViewModel>()
+                .PerRequest<OrgViewModel>()
+                    .PerRequest<MembersViewModel>()
                 .PerRequest<AboutViewModel>()
                 .PerRequest<AuthorizeViewModel>()
                 .PerRequest<HtmlUrlViewModel>();
@@ -101,13 +105,13 @@ namespace WpaGhApp
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 
-            // Initiate Log channel and Log sessions 
-            EtlLogger.GetLogger().InitiateLogger();
+            //// Initiate Log channel and Log sessions 
+            //EtlLogger.GetLogger().InitiateLogger();
 
-            // Delete the logfile which are beyond the dates 
-            EtlLogger.GetLogger().DeleteFile();
+            //// Delete the logfile which are beyond the dates 
+            //EtlLogger.GetLogger().DeleteFile();
 
-            EtlLogger.GetLogger().LogChannel.LogMessage("Starting up in CommonApplicationLaunchAsync");
+            //EtlLogger.GetLogger().LogChannel.LogMessage("Starting up in CommonApplicationLaunchAsync");
 #endif
 
             Initialize();

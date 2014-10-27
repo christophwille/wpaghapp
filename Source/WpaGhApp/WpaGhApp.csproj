@@ -95,7 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Main\CommonFollowControl.xaml">
+    <Page Include="Views\Main\CommonAccountControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,7 +115,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Main\OrgsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main\RepositoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Org\MembersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Org\OrgView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,15 +199,19 @@
     <Compile Include="ViewModels\IViewModelWithRepositoryId.cs" />
     <Compile Include="ViewModels\Main\FollowersViewModel.cs" />
     <Compile Include="ViewModels\Main\FollowingViewModel.cs" />
-    <Compile Include="ViewModels\Main\FollowViewModelBase.cs" />
-    <Compile Include="ViewModels\Main\IFollowViewModelBindings.cs" />
+    <Compile Include="ViewModels\Main\AccountViewModelBase.cs" />
+    <Compile Include="ViewModels\Main\IAccountViewModelBindings.cs" />
     <Compile Include="ViewModels\Main\IMainViewModelBindings.cs" />
     <Compile Include="ViewModels\IViewModelWithApplicationName.cs" />
     <Compile Include="ViewModels\Main\INewsViewModelBindings.cs" />
     <Compile Include="ViewModels\Main\IRepositoriesViewModelBindings.cs" />
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="ViewModels\Main\NewsViewModel.cs" />
+    <Compile Include="ViewModels\Main\OrgsListViewModel.cs" />
     <Compile Include="ViewModels\Main\RepositoriesViewModel.cs" />
+    <Compile Include="ViewModels\Org\IOrgViewModelBindings.cs" />
+    <Compile Include="ViewModels\Org\MembersViewModel.cs" />
+    <Compile Include="ViewModels\Org\OrgViewModel.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryCommitsViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryInfoViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryIssuesViewModelBindings.cs" />
@@ -213,8 +229,8 @@
     <Compile Include="Views\HtmlUrlView.xaml.cs">
       <DependentUpon>HtmlUrlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\CommonFollowControl.xaml.cs">
-      <DependentUpon>CommonFollowControl.xaml</DependentUpon>
+    <Compile Include="Views\Main\CommonAccountControl.xaml.cs">
+      <DependentUpon>CommonAccountControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\FollowersView.xaml.cs">
       <DependentUpon>FollowersView.xaml</DependentUpon>
@@ -228,8 +244,17 @@
     <Compile Include="Views\Main\NewsView.xaml.cs">
       <DependentUpon>NewsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\OrgsListView.xaml.cs">
+      <DependentUpon>OrgsListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Main\RepositoriesView.xaml.cs">
       <DependentUpon>RepositoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Org\MembersView.xaml.cs">
+      <DependentUpon>MembersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Org\OrgView.xaml.cs">
+      <DependentUpon>OrgView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Repository\RepositoryCommitsView.xaml.cs">
       <DependentUpon>RepositoryCommitsView.xaml</DependentUpon>

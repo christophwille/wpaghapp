@@ -17,9 +17,12 @@ namespace WpaGhApp.ViewModels.Main
         private readonly RepositoriesViewModel _vmRepos;
         private readonly FollowersViewModel _vmFollowers;
         private readonly FollowingViewModel _vmFollowing;
+        private readonly OrgsListViewModel _vmOrgs;
 
         public MainViewModel(INavigationService navigationService, IResourceLoader loader,
-            NewsViewModel vmNews, RepositoriesViewModel vmRepos, FollowersViewModel vmFollowers, FollowingViewModel vmFollowing)
+            NewsViewModel vmNews, RepositoriesViewModel vmRepos, 
+            FollowersViewModel vmFollowers, FollowingViewModel vmFollowing,
+            OrgsListViewModel vmOrgs)
         {
             _navigationService = navigationService;
             _loader = loader;
@@ -28,6 +31,7 @@ namespace WpaGhApp.ViewModels.Main
             _vmRepos = vmRepos;
             _vmFollowers = vmFollowers;
             _vmFollowing = vmFollowing;
+            _vmOrgs = vmOrgs;
 
             PageTitle = "Your Account";
         }
@@ -39,14 +43,16 @@ namespace WpaGhApp.ViewModels.Main
             if (null != User)
             {
                 _vmRepos.UserLogin = User.Login;
-                _vmFollowers.UserLogin = User.Login;
-                _vmFollowing.UserLogin = User.Login;
+                _vmFollowers.Login = User.Login;
+                _vmFollowing.Login = User.Login;
+                _vmOrgs.Login = User.Login;
             }
 
             // TODO: First find a way to get the private news items // Items.Add(_vmNews);
             Items.Add(_vmRepos);
             Items.Add(_vmFollowers);
             Items.Add(_vmFollowing);
+            Items.Add(_vmOrgs);
         }
 
         protected override void OnActivate()

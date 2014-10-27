@@ -9,7 +9,7 @@ using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
 {
-    public class FollowingViewModel: FollowViewModelBase
+    public class FollowingViewModel: AccountViewModelBase
     {
         public FollowingViewModel(IGitHubService githubService, IMessageService messageService, 
             IResourceLoader loader, INavigationService navigationService) : base(githubService, messageService, loader,navigationService)
@@ -17,9 +17,9 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "following";
         }
 
-        protected async override Task<IReadOnlyList<User>> GetFollowUsersAsync()
+        protected async override Task<IReadOnlyList<Account>> GetAccountsAsync()
         {
-            return await _githubService.GetFollowingAsync(UserLogin);
+            return await _githubService.GetFollowingAsync(Login);
         }
     }
 }

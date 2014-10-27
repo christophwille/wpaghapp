@@ -9,13 +9,13 @@ using WpaGhApp.ViewModels.Main;
 
 namespace WpaGhApp.DesignViewModels
 {
-    public class FollowViewModelDT : IFollowViewModelBindings
+    public class FollowViewModelDT : IAccountViewModelBindings
     {
-        public ObservableCollection<User> Users { get; private set; }
+        public ObservableCollection<Account> Accounts { get; private set; }
 
         public FollowViewModelDT()
         {
-            Users = new ObservableCollection<User>(new List<User>
+            Accounts = new ObservableCollection<Account>(new List<User>
             {
                 new User()
                 {
