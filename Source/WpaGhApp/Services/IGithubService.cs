@@ -26,5 +26,8 @@ namespace WpaGhApp.Services
 
         Task<IReadOnlyList<GitHubCommit>> GetCommitsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);
         Task<IReadOnlyList<Issue>> GetIssuesAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers);
+
+        Task<IReadOnlyList<RepositoryContent>> GetContentsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers,
+            string contentPath);
     }
 }

@@ -29,7 +29,6 @@ namespace WpaGhApp.DesignViewModels
                  AuthorName = "christophwille"
                 }
             });
-
         }
 
         public ObservableCollection<GhCommit> Commits { get; private set; }

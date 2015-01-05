@@ -135,6 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Repository\RepositoryContentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Repository\RepositoryInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +171,7 @@
     <Compile Include="DesignViewModels\AboutViewModelDT.cs" />
     <Compile Include="DesignViewModels\AuthorizeViewModelDT.cs" />
     <Compile Include="DesignViewModels\HtmlUrlViewModelDT.cs" />
+    <Compile Include="DesignViewModels\RepositoryContentsViewModelDT.cs" />
     <Compile Include="DesignViewModels\RepositoryViewModelDT.cs" />
     <Compile Include="DesignViewModels\FollowViewModelDT.cs" />
     <Compile Include="DesignViewModels\MainViewModelDT.cs" />
@@ -178,6 +183,7 @@
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
     <Compile Include="Models\GhCommit.cs" />
+    <Compile Include="Models\GhContent.cs" />
     <Compile Include="Models\GhIssue.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
     <Compile Include="Models\RepositoryViewModelState.cs" />
@@ -215,10 +221,12 @@
     <Compile Include="ViewModels\Org\MembersViewModel.cs" />
     <Compile Include="ViewModels\Org\OrgViewModel.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryCommitsViewModelBindings.cs" />
+    <Compile Include="ViewModels\Repository\IRepositoryContentsViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryInfoViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryIssuesViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\IRepositoryViewModelBindings.cs" />
     <Compile Include="ViewModels\Repository\RepositoryCommitsViewModel.cs" />
+    <Compile Include="ViewModels\Repository\RepositoryContentsViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryInfoViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryIssuesViewModel.cs" />
     <Compile Include="ViewModels\Repository\RepositoryViewModel.cs" />
@@ -260,6 +268,9 @@
     </Compile>
     <Compile Include="Views\Repository\RepositoryCommitsView.xaml.cs">
       <DependentUpon>RepositoryCommitsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Repository\RepositoryContentsView.xaml.cs">
+      <DependentUpon>RepositoryContentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Repository\RepositoryInfoView.xaml.cs">
       <DependentUpon>RepositoryInfoView.xaml</DependentUpon>

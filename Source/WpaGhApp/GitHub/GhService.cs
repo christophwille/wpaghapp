@@ -191,11 +191,15 @@ namespace WpaGhApp.Github
             return issues;
         }
 
-        public Task GetContentsAsync()
+        public async Task<IReadOnlyList<RepositoryContent>> GetContentsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers, string contentPath)
         {
-            // .Contents API not implemented. https://developer.github.com/v3/repos/contents/#get-contents
+            await EnsureCredentialsAsync().ConfigureAwait(false);
 
-            return Task.FromResult(0);
+            var contents = await ExecuteWithErrorTrappingAsync(
+                () => _gitHubClient.Repository.Content.GetContents(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName, contentPath))
+                .ConfigureAwait(false);
+
+            return contents;
         }
     }
 }

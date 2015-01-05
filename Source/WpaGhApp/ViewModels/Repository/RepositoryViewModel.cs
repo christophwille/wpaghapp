@@ -22,9 +22,11 @@ namespace WpaGhApp.ViewModels.Repository
         private readonly RepositoryCommitsViewModel _vmCommits;
         private readonly RepositoryIssuesViewModel _vmIssues;
         private readonly RepositoryInfoViewModel _vmInfo;
+        private readonly RepositoryContentsViewModel _vmContents;
 
         public RepositoryViewModel(INavigationService navigationService, IResourceLoader loader, IGitHubService githubService,
-            RepositoryCommitsViewModel vmCommits, RepositoryIssuesViewModel vmIssues, RepositoryInfoViewModel vmInfo)
+            RepositoryCommitsViewModel vmCommits, RepositoryIssuesViewModel vmIssues, 
+            RepositoryInfoViewModel vmInfo, RepositoryContentsViewModel vmContents)
         {
             _navigationService = navigationService;
             _loader = loader;
@@ -32,6 +34,7 @@ namespace WpaGhApp.ViewModels.Repository
             _vmCommits = vmCommits;
             _vmIssues = vmIssues;
             _vmInfo = vmInfo;
+            _vmContents = vmContents;
         }
 
         private string _repositoryJson;
@@ -59,12 +62,15 @@ namespace WpaGhApp.ViewModels.Repository
             base.OnInitialize();
 
             _vmInfo.Repository = this.Repository;
+
             _vmCommits.RepositoryId = this;
             _vmIssues.RepositoryId = this;
+            _vmContents.RepositoryId = this;
 
             Items.Add(_vmInfo);
             Items.Add(_vmCommits);
             Items.Add(_vmIssues);
+            Items.Add(_vmContents);
         }
 
         public void LoadState(string jsonState)
