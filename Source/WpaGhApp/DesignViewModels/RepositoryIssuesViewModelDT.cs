@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.ViewModels.Repository;
 
 namespace WpaGhApp.DesignViewModels
@@ -13,27 +14,21 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoryIssuesViewModelDT()
         {
-            Issues = new ObservableCollection<Issue>(new List<Issue>
+            Issues = new ObservableCollection<GhIssue>(new List<GhIssue>
             {
-                new Issue()
+                new GhIssue()
                 {
                     Title = "Get rid of all bugs in the app",
-                    Assignee = new User()
-                    {
-                        Login = "christophwille"
-                    },
+                    AssigneeLogin = "christophwille"
                 },
-                new Issue()
+                new GhIssue()
                 {
                     Title = "We do not support multiline. It will simply be cut off at screen size",
-                    Assignee = new User()
-                    {
-                        Login = "dgrunwald"
-                    },
+                    AssigneeLogin = "dgrunwald"
                 }
             });
         }
         public bool Working { get; set; }
-        public ObservableCollection<Octokit.Issue> Issues { get; private set; }
+        public ObservableCollection<GhIssue> Issues { get; private set; }
     }
 }

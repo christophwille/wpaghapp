@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.ViewModels.Repository;
 
 namespace WpaGhApp.DesignViewModels
@@ -13,37 +14,25 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoryCommitsViewModelDT()
         {
-            Commits = new ObservableCollection<GitHubCommit>(new List<GitHubCommit>
+            Commits = new ObservableCollection<GhCommit>(new List<GhCommit>
             {
-                new GitHubCommit()
+                new GhCommit()
                 {
-                    Commit = new Commit()
-                    {
-                        Message = "Initial commit",
-                        Author = new Signature()
-                        {
-                            Date = DateTime.Now,
-                            Name = "christophwille"
-                        }
-                    }
+                 Message = "Initial commit",
+                 AuthoringDate = DateTime.Now,
+                 AuthorName = "christophwille"
                 },
-                new GitHubCommit()
+                new GhCommit()
                 {
-                    Commit = new Commit()
-                    {
-                        Message = "a long commit with \r\n a wrap in it",
-                        Author = new Signature()
-                        {
-                            Date = DateTime.Now,
-                            Name = "christophwille"
-                        }
-                    }
+                 Message = "a long commit with \r\n a wrap in it",
+                 AuthoringDate = DateTime.Now,
+                 AuthorName = "christophwille"
                 }
             });
 
         }
 
-        public ObservableCollection<Octokit.GitHubCommit> Commits { get; private set; }
+        public ObservableCollection<GhCommit> Commits { get; private set; }
         public bool Working { get; set; }
     }
 }

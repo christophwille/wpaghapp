@@ -33,7 +33,7 @@ namespace WpaGhApp.ViewModels.Repository
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
 
-        public ObservableCollection<Octokit.GitHubCommit> Commits { get; set; }
+        public ObservableCollection<GhCommit> Commits { get; set; }
         protected async override void OnInitialize()
         {
             // Initialize only when not restoring (on refresh set Commits to null first)
@@ -55,17 +55,17 @@ namespace WpaGhApp.ViewModels.Repository
             }
             else
             {
-                Commits = new ObservableCollection<Octokit.GitHubCommit>(commits);
+                Commits = new ObservableCollection<GhCommit>(GhCommit.ToModel(commits));
             }
         }
 
         public void SelectCommit(ItemClickEventArgs eventArgs)
         {
-            var ghCommit = eventArgs.ClickedItem as Octokit.GitHubCommit;
+            var ghCommit = eventArgs.ClickedItem as GhCommit;
             if (null == ghCommit) return;
 
             _navigationService.UriFor<HtmlUrlViewModel>()
-                .WithParam(vm => vm.PageTitle, ghCommit.Commit.Message)
+                .WithParam(vm => vm.PageTitle, ghCommit.Message)
                 .WithParam(vm => vm.HtmlUrl, ghCommit.HtmlUrl)
                 .Navigate();
         }

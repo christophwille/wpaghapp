@@ -74,11 +74,11 @@ namespace WpaGhApp.ViewModels.Repository
 
             if (null != state.Commits)
             {
-                _vmCommits.Commits = new ObservableCollection<Octokit.GitHubCommit>(state.Commits);
+                _vmCommits.Commits = new ObservableCollection<GhCommit>(state.Commits);
             }
             if (null != state.Issues)
             {
-                _vmIssues.Issues = new ObservableCollection<Octokit.Issue>(state.Issues);
+                _vmIssues.Issues = new ObservableCollection<GhIssue>(state.Issues);
             }
 
             // Do this last as this would call OnInitialize right away before restoring sub-state

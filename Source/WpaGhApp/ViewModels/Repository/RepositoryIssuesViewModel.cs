@@ -31,7 +31,7 @@ namespace WpaGhApp.ViewModels.Repository
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
         public bool Working { get; set; }
-        public ObservableCollection<Octokit.Issue> Issues { get; set; }
+        public ObservableCollection<GhIssue> Issues { get; set; }
         protected async override void OnInitialize()
         {
             if (null == Issues)
@@ -52,18 +52,18 @@ namespace WpaGhApp.ViewModels.Repository
             }
             else
             {
-                Issues = new ObservableCollection<Octokit.Issue>(issues);
+                Issues = new ObservableCollection<GhIssue>(GhIssue.ToModel(issues));
             }
         }
 
         public void SelectIssue(ItemClickEventArgs eventArgs)
         {
-            var issue = eventArgs.ClickedItem as Octokit.Issue;
+            var issue = eventArgs.ClickedItem as GhIssue;
             if (null == issue) return;
 
             _navigationService.UriFor<HtmlUrlViewModel>()
                 .WithParam(vm => vm.PageTitle, issue.Title)
-                .WithParam(vm => vm.HtmlUrl, issue.HtmlUrl.ToString()) // this is Uri, with commit it is string....
+                .WithParam(vm => vm.HtmlUrl, issue.HtmlUrl) 
                 .Navigate();
         }
     }

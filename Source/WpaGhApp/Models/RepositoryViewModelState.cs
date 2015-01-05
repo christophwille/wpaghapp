@@ -9,7 +9,7 @@ namespace WpaGhApp.Models
     public class RepositoryViewModelState
     {
         public int ActiveItemIndex { get; set; }
-        public List<Octokit.GitHubCommit> Commits { get; set; }
-        public List<Octokit.Issue> Issues { get; set; } 
+        public List<GhCommit> Commits { get; set; }
+        public List<GhIssue> Issues { get; set; } 
     }
 }

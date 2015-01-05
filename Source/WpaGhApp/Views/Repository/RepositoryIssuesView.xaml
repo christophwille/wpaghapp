@@ -38,7 +38,7 @@
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemTextBlockStyle}"/>
                         <TextBlock
-                                    Text="{Binding Assignee.Login}"
+                                    Text="{Binding AssigneeLogin}"
                                     Pivot.SlideInAnimationGroup="2"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{StaticResource ListViewItemContentTextBlockStyle}"/>

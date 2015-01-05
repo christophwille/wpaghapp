@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpaGhApp.Models;
 
 namespace WpaGhApp.ViewModels.Repository
 {
     public interface IRepositoryIssuesViewModelBindings : IViewModelWithProgessIndicator
     {
-        ObservableCollection<Octokit.Issue> Issues { get; }
+        ObservableCollection<GhIssue> Issues { get; }
     }
 }
