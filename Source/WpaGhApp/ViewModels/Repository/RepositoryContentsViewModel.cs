@@ -47,8 +47,8 @@ namespace WpaGhApp.ViewModels.Repository
         public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
         public string CurrentPath { get; set; }
         public List<GhTreeItem> PathItems { get; set; }
-        public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; } 
-            
+        public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; }
+
         private async Task LoadContentsAsync()
         {
             Working = true;
@@ -73,7 +73,7 @@ namespace WpaGhApp.ViewModels.Repository
                 else
                 {
                     PathTree = TreeToPathDictionary(response.Tree);
-                    SelectPath(new GhTreeItem() { Path = "", Name = "root"});
+                    SelectPath(new GhTreeItem() { Path = "", Name = "root" });
                 }
             }
 
@@ -107,7 +107,7 @@ namespace WpaGhApp.ViewModels.Repository
             return dict;
         }
 
-        private void SelectPath(GhTreeItem pathTreeItem)
+        private void SelectPath(GhTreeItem pathTreeItem, bool insertInBackStack=true)
         {
             PathItems = null;
             var pathTree = this.PathTree;
@@ -120,7 +120,7 @@ namespace WpaGhApp.ViewModels.Repository
                     PathItems = pathTree[path];
                     CurrentPath = path;
 
-                    Breadcrumbs.Add(pathTreeItem);
+                    if (insertInBackStack) Breadcrumbs.Add(pathTreeItem);
                 }
             }
         }
@@ -145,10 +145,20 @@ namespace WpaGhApp.ViewModels.Repository
             //    .Navigate();
         }
 
-        public void NavigateBackstack(GhTreeItem o)
+        public void NavigateBackstack(GhTreeItem ti)
         {
-            // TODO: Navigate back, clear the stack to the correct position
-            
+            for (var i = Breadcrumbs.Count() - 1; i >= 0; i--)
+            {
+                var item = Breadcrumbs[i];
+                if (item != ti)   // TODO: Revisit this logic once we store page state
+                {
+                    Breadcrumbs.Remove(item);
+                    continue;
+                }
+                break;
+            }
+
+            SelectPath(ti, insertInBackStack:false);
         }
     }
 }
