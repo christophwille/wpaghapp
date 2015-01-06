@@ -120,8 +120,15 @@ namespace WpaGhApp.ViewModels.Repository
 
         public void SelectContent(ItemClickEventArgs eventArgs)
         {
-            var issue = eventArgs.ClickedItem as GhContent;
-            if (null == issue) return;
+            var ti = eventArgs.ClickedItem as GhTreeItem;
+            if (null == ti) return;
+
+            // If it is a directory, open it
+            if (ti.ItemType == Octokit.TreeType.Tree)
+            {
+                SelectPath(ti.Path);
+                return;
+            }
 
             // TODO: File -> Web, SubDir -> reload with new path
 
