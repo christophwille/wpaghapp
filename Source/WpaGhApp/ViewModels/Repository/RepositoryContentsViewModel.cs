@@ -26,7 +26,7 @@ namespace WpaGhApp.ViewModels.Repository
             _messageService = messageService;
             _navigationService = navigationService;
 
-            DisplayName = "contents";
+            DisplayName = "code";
         }
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
