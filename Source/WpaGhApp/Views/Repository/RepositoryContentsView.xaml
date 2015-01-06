@@ -20,26 +20,49 @@
     </interactivity:Interaction.Behaviors>
 
     <Grid>
-        <ListView
-            x:Name="CommitsListView"
-              ItemsSource="{Binding PathItems}"
-              IsItemClickEnabled="True"
-              micro:Message.Attach="[Event ItemClick] = [Action SelectContent($eventArgs)]"
-              ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="0,0,0,9.5">
-                        <TextBlock
-                                    Text="{Binding Name}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="WordEllipsis"
-                                    MaxLines="1"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel Orientation="Vertical">
+            <ItemsControl ItemsSource="{Binding Breadcrumbs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Margin="0,0,0,0" Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <HyperlinkButton Margin="0,0,10,0"
+                            micro:Message.Attach="[Event Click] = [Action NavigateBackstack($dataContext)]">
+                            <TextBlock Style="{StaticResource BaseTextBlockStyle}">
+                              <Underline>
+                                <Run Text="{Binding Name}"/>
+                              </Underline>
+                            </TextBlock>
+                        </HyperlinkButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <ListView
+                x:Name="CommitsListView"
+                  ItemsSource="{Binding PathItems}"
+                  IsItemClickEnabled="True"
+                  micro:Message.Attach="[Event ItemClick] = [Action SelectContent($eventArgs)]"
+                  ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,0,9.5">
+                            <TextBlock
+                                        Text="{Binding Name}"
+                                        TextWrapping="NoWrap"
+                                        TextTrimming="WordEllipsis"
+                                        MaxLines="1"
+                                        Pivot.SlideInAnimationGroup="1"
+                                        CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                        Style="{StaticResource ListViewItemTextBlockStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
     </Grid>
 </UserControl>

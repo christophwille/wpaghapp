@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
+using WpaGhApp.Common;
 using WpaGhApp.Models;
 using WpaGhApp.Services;
 
@@ -27,7 +28,9 @@ namespace WpaGhApp.ViewModels.Repository
             _navigationService = navigationService;
 
             DisplayName = "code";
+
             CurrentPath = "";
+            Breadcrumbs = new ObservableCollection<GhTreeItem>();
         }
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
@@ -43,7 +46,8 @@ namespace WpaGhApp.ViewModels.Repository
 
         public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
         public string CurrentPath { get; set; }
-        public List<GhTreeItem> PathItems { get; set; } 
+        public List<GhTreeItem> PathItems { get; set; }
+        public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; } 
             
         private async Task LoadContentsAsync()
         {
@@ -69,7 +73,7 @@ namespace WpaGhApp.ViewModels.Repository
                 else
                 {
                     PathTree = TreeToPathDictionary(response.Tree);
-                    SelectPath(CurrentPath);
+                    SelectPath(new GhTreeItem() { Path = "", Name = "root"});
                 }
             }
 
@@ -103,10 +107,11 @@ namespace WpaGhApp.ViewModels.Repository
             return dict;
         }
 
-        private void SelectPath(string path)
+        private void SelectPath(GhTreeItem pathTreeItem)
         {
             PathItems = null;
             var pathTree = this.PathTree;
+            string path = pathTreeItem.Path;
 
             if (null != pathTree && null != path)
             {
@@ -114,6 +119,8 @@ namespace WpaGhApp.ViewModels.Repository
                 {
                     PathItems = pathTree[path];
                     CurrentPath = path;
+
+                    Breadcrumbs.Add(pathTreeItem);
                 }
             }
         }
@@ -126,7 +133,7 @@ namespace WpaGhApp.ViewModels.Repository
             // If it is a directory, open it
             if (ti.ItemType == Octokit.TreeType.Tree)
             {
-                SelectPath(ti.Path);
+                SelectPath(ti);
                 return;
             }
 
@@ -136,6 +143,12 @@ namespace WpaGhApp.ViewModels.Repository
             //    .WithParam(vm => vm.PageTitle, issue.Title)
             //    .WithParam(vm => vm.HtmlUrl, issue.HtmlUrl)
             //    .Navigate();
+        }
+
+        public void NavigateBackstack(GhTreeItem o)
+        {
+            // TODO: Navigate back, clear the stack to the correct position
+            
         }
     }
 }

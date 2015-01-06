@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpaGhApp.Common;
 using WpaGhApp.Models;
 
 namespace WpaGhApp.ViewModels.Repository
@@ -12,6 +13,7 @@ namespace WpaGhApp.ViewModels.Repository
     {
         Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
         string CurrentPath { get; set; }
-        List<GhTreeItem> PathItems { get; set; } 
+        List<GhTreeItem> PathItems { get; set; }
+        ObservableCollection<GhTreeItem> Breadcrumbs { get; set; } 
     }
 }
