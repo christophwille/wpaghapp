@@ -29,5 +29,7 @@ namespace WpaGhApp.Services
 
         Task<IReadOnlyList<RepositoryContent>> GetContentsAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers,
             string contentPath);
+
+        Task<TreeResponse> GetTreeAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers, string sha);
     }
 }

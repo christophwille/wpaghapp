@@ -45,6 +45,11 @@ namespace WpaGhApp.ViewModels.Repository
         {
             Working = true;
             var contents = await _githubService.GetContentsAsync(RepositoryId, "/");
+
+            //// Sha for last commit of repository https://github.com/christophwille/azure-snippets/commits/master
+            //// https://developer.github.com/v3/git/trees/#get-a-tree-recursively
+            // var response = await _githubService.GetTreeAsync(RepositoryId, "6525378e80deee6fc2d61b92a501112dc7259059?recursive=1");
+
             Working = false;
 
             if (null == contents)
