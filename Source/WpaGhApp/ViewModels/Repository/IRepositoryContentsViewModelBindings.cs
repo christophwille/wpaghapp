@@ -10,6 +10,8 @@ namespace WpaGhApp.ViewModels.Repository
 {
     public interface IRepositoryContentsViewModelBindings : IViewModelWithProgessIndicator
     {
-        ObservableCollection<GhContent> Contents { get; set; }
+        Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
+        string CurrentPath { get; set; }
+        List<GhTreeItem> PathItems { get; set; } 
     }
 }

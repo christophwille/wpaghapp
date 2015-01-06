@@ -16,13 +16,13 @@
 
     <interactivity:Interaction.Behaviors>
         <common:ProgressBehavior IsVisible="{Binding Working}"
-                                Text="Loading contents..."/>
+                                Text="Loading tree..."/>
     </interactivity:Interaction.Behaviors>
 
     <Grid>
         <ListView
             x:Name="CommitsListView"
-              ItemsSource="{Binding Contents}"
+              ItemsSource="{Binding PathItems}"
               IsItemClickEnabled="True"
               micro:Message.Attach="[Event ItemClick] = [Action SelectContent($eventArgs)]"
               ContinuumNavigationTransitionInfo.ExitElementContainer="True">

@@ -182,9 +182,11 @@
     <Compile Include="DesignViewModels\RepositoryIssuesViewModelDT.cs" />
     <Compile Include="GitHub\GhOAuthConfiguration.cs" />
     <Compile Include="GitHub\GhService.cs" />
+    <Compile Include="Models\GhBranch.cs" />
     <Compile Include="Models\GhCommit.cs" />
     <Compile Include="Models\GhContent.cs" />
     <Compile Include="Models\GhIssue.cs" />
+    <Compile Include="Models\GhTreeItem.cs" />
     <Compile Include="Models\IGitHubRepositoryIdentifiers.cs" />
     <Compile Include="Models\RepositoryViewModelState.cs" />
     <Compile Include="Services\DefaultMessageService.cs" />

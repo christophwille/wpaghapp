@@ -27,38 +27,94 @@ namespace WpaGhApp.ViewModels.Repository
             _navigationService = navigationService;
 
             DisplayName = "code";
+            CurrentPath = "";
         }
 
         public IGitHubRepositoryIdentifiers RepositoryId { get; set; }
         public bool Working { get; set; }
-        public ObservableCollection<GhContent> Contents { get; set; }
 
         protected async override void OnInitialize()
         {
-            if (null == Contents)
+            if (null == PathTree)
             {
                 await LoadContentsAsync();
             }
         }
 
-        async Task LoadContentsAsync()
+        public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
+        public string CurrentPath { get; set; }
+        public List<GhTreeItem> PathItems { get; set; } 
+            
+        private async Task LoadContentsAsync()
         {
             Working = true;
-            var contents = await _githubService.GetContentsAsync(RepositoryId, "/");
 
-            //// Sha for last commit of repository https://github.com/christophwille/azure-snippets/commits/master
-            //// https://developer.github.com/v3/git/trees/#get-a-tree-recursively
-            // var response = await _githubService.GetTreeAsync(RepositoryId, "6525378e80deee6fc2d61b92a501112dc7259059?recursive=1");
+            var branches = await _githubService.GetBranchesAsync(RepositoryId);
 
-            Working = false;
-
-            if (null == contents)
+            if (null == branches)
             {
                 await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);
             }
             else
             {
-                Contents = new ObservableCollection<GhContent>(GhContent.ToModel(contents));
+                // TODO: Make the branch selectable (and persist list in page state via model class GhBranch)
+                var defaultBranch = branches.FirstOrDefault();
+                string shaToPass = defaultBranch.Commit.Sha + "?recursive=1";
+                var response = await _githubService.GetTreeAsync(RepositoryId, shaToPass);
+
+                if (response == null)
+                {
+                    await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);
+                }
+                else
+                {
+                    PathTree = TreeToPathDictionary(response.Tree);
+                    SelectPath(CurrentPath);
+                }
+            }
+
+            Working = false;
+        }
+
+        private Dictionary<string, List<GhTreeItem>> TreeToPathDictionary(ICollection<Octokit.TreeItem> treeItems)
+        {
+            var dict = new Dictionary<string, List<GhTreeItem>>();
+
+            foreach (var ti in treeItems)
+            {
+                int lastDirSeparator = ti.Path.LastIndexOf('/');
+                string path = "";
+                string name = ti.Path;
+                if (-1 != lastDirSeparator)
+                {
+                    path = ti.Path.Substring(0, lastDirSeparator);
+                    name = ti.Path.Substring(lastDirSeparator + 1);
+                }
+
+                if (!dict.ContainsKey(path))
+                {
+                    dict.Add(path, new List<GhTreeItem>());
+                }
+
+                var list = dict[path];
+                list.Add(new GhTreeItem(ti, name, path));
+            }
+
+            return dict;
+        }
+
+        private void SelectPath(string path)
+        {
+            PathItems = null;
+            var pathTree = this.PathTree;
+
+            if (null != pathTree && null != path)
+            {
+                if (pathTree.ContainsKey(path))
+                {
+                    PathItems = pathTree[path];
+                    CurrentPath = path;
+                }
             }
         }
 

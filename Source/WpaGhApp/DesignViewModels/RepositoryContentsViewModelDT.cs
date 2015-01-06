@@ -13,22 +13,23 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoryContentsViewModelDT()
         {
-            Contents = new ObservableCollection<GhContent>(new List<GhContent>
+            CurrentPath = "";
+
+            PathItems = new List<GhTreeItem>()
             {
-                new GhContent()
+                new GhTreeItem()
                 {
-                 Name = ".gitignore",
-                 Path = ".gitignore",
-                },
-                new GhContent()
-                {
-                 Name = ".gitignore",
-                 Path = ".gitignore",
+                    Name = ".gitignore",
+                    RelativePath = "",
+                    Size = 45,
+                    ItemType = Octokit.TreeType.Blob
                 }
-            });
+            };
         }
 
         public bool Working { get; set; }
-        public ObservableCollection<GhContent> Contents { get; set; }
+        public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
+        public string CurrentPath { get; set; }
+        public List<GhTreeItem> PathItems { get; set; } 
     }
 }

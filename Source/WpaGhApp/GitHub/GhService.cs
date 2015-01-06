@@ -212,5 +212,15 @@ namespace WpaGhApp.Github
 
             return response;
         }
+
+        public async Task<IReadOnlyList<Branch>> GetBranchesAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers)
+        {
+            await EnsureCredentialsAsync().ConfigureAwait(false);
+
+            var branches = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Repository.GetAllBranches(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName))
+                .ConfigureAwait(false);
+
+            return branches;
+        }
     }
 }
