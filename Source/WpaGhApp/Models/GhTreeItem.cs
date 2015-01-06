@@ -38,17 +38,21 @@ namespace WpaGhApp.Models
                 {
                     case TreeType.Blob:
                         return "\uf016"; // fa-file-o
-                        break;
                     case TreeType.Tree:
                         return "\uf114"; // fa-folder-o
-                        break;
                     case TreeType.Commit:
                         return "\uf003"; //  fa-envelope-o
-                        break;
                     default:
                         return "\uf10c"; // fa-circle-o
                 }
             }
+        }
+
+        public string GetHtmlUrl(IGitHubRepositoryIdentifiers identifiers, string branchName)
+        {
+            string filePath = this.Path;
+            return String.Format("https://github.com/{0}/{1}/blob/{2}/{3}",
+                identifiers.RepositoryOwner, identifiers.RepositoryName, branchName, filePath);
         }
 
         public string Path { get; set; }

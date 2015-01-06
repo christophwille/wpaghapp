@@ -10,6 +10,12 @@ namespace WpaGhApp.Models
     {
         public int ActiveItemIndex { get; set; }
         public List<GhCommit> Commits { get; set; }
-        public List<GhIssue> Issues { get; set; } 
+        public List<GhIssue> Issues { get; set; }
+
+        // State for repository content viewmodel
+        public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
+        public List<GhTreeItem> Breadcrumbs { get; set; }
+        public List<GhBranch> Branches { get; set; }
+        public string SelectedBranchName { get; set; }
     }
 }

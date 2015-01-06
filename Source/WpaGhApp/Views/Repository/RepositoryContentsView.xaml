@@ -43,7 +43,7 @@
             </ItemsControl>
 
             <ListView
-                x:Name="CommitsListView"
+                x:Name="ContentsListView"
                   ItemsSource="{Binding PathItems}"
                   IsItemClickEnabled="True"
                   micro:Message.Attach="[Event ItemClick] = [Action SelectContent($eventArgs)]"

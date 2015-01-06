@@ -14,8 +14,6 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoryContentsViewModelDT()
         {
-            CurrentPath = "";
-
             PathItems = new List<GhTreeItem>()
             {
                 new GhTreeItem()
@@ -61,8 +59,9 @@ namespace WpaGhApp.DesignViewModels
 
         public bool Working { get; set; }
         public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
-        public string CurrentPath { get; set; }
         public List<GhTreeItem> PathItems { get; set; }
-        public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; } 
+        public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; }
+        public List<GhBranch> Branches { get; set; }
+        public GhBranch SelectedBranch { get; set; }
     }
 }

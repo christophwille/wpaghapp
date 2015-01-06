@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -87,6 +88,23 @@ namespace WpaGhApp.ViewModels.Repository
                 _vmIssues.Issues = new ObservableCollection<GhIssue>(state.Issues);
             }
 
+            if (null != state.PathTree)
+            {
+                _vmContents.PathTree = state.PathTree;
+            }
+            if (null != state.Breadcrumbs)
+            {
+                _vmContents.Breadcrumbs = new ObservableCollection<GhTreeItem>(state.Breadcrumbs);
+            }
+            if (null != state.Branches)
+            {
+                _vmContents.Branches = state.Branches;
+            }
+            if (!String.IsNullOrWhiteSpace(state.SelectedBranchName) && null != _vmContents.Branches)
+            {
+                _vmContents.SelectedBranch = _vmContents.Branches.FirstOrDefault(b => b.Name == state.SelectedBranchName);
+            }
+
             // Do this last as this would call OnInitialize right away before restoring sub-state
             var activeItem = Items.ElementAtOrDefault(state.ActiveItemIndex);
             ActiveItem = activeItem;
@@ -101,6 +119,11 @@ namespace WpaGhApp.ViewModels.Repository
 
             if (null != _vmCommits.Commits) state.Commits = _vmCommits.Commits.ToList();
             if (null != _vmIssues.Issues) state.Issues = _vmIssues.Issues.ToList();
+
+            if (null != _vmContents.PathTree) state.PathTree = _vmContents.PathTree;
+            if (null != _vmContents.Breadcrumbs) state.Breadcrumbs = _vmContents.Breadcrumbs.ToList();
+            if (null != _vmContents.Branches) state.Branches = _vmContents.Branches;
+            if (null != _vmContents.SelectedBranch) state.SelectedBranchName = _vmContents.SelectedBranch.Name;
 
             return JsonConvert.SerializeObject(state);
         }

@@ -29,7 +29,6 @@ namespace WpaGhApp.ViewModels.Repository
 
             DisplayName = "code";
 
-            CurrentPath = "";
             Breadcrumbs = new ObservableCollection<GhTreeItem>();
         }
 
@@ -42,12 +41,18 @@ namespace WpaGhApp.ViewModels.Repository
             {
                 await LoadContentsAsync();
             }
+            else
+            {
+                var lastBreadcrumb = Breadcrumbs.LastOrDefault();
+                SelectPath(lastBreadcrumb, insertInBackStack:false);
+            }
         }
 
         public Dictionary<string, List<GhTreeItem>> PathTree { get; set; }
-        public string CurrentPath { get; set; }
-        public List<GhTreeItem> PathItems { get; set; }
+        public List<GhTreeItem> PathItems { get; set; } // doesn't need to be saved in state (recreate via last item in Breadcrumbs)
         public ObservableCollection<GhTreeItem> Breadcrumbs { get; set; }
+        public List<GhBranch> Branches { get; set; } 
+        public GhBranch SelectedBranch { get; set; }
 
         private async Task LoadContentsAsync()
         {
@@ -61,9 +66,11 @@ namespace WpaGhApp.ViewModels.Repository
             }
             else
             {
-                // TODO: Make the branch selectable (and persist list in page state via model class GhBranch)
-                var defaultBranch = branches.FirstOrDefault();
-                string shaToPass = defaultBranch.Commit.Sha + "?recursive=1";
+                // TODO: Make the branch selectable
+                Branches = new List<GhBranch>(GhBranch.ToModel(branches));
+                SelectedBranch = Branches.FirstOrDefault();
+                string shaToPass = SelectedBranch.Sha + "?recursive=1";
+
                 var response = await _githubService.GetTreeAsync(RepositoryId, shaToPass);
 
                 if (response == null)
@@ -118,8 +125,6 @@ namespace WpaGhApp.ViewModels.Repository
                 if (pathTree.ContainsKey(path))
                 {
                     PathItems = pathTree[path];
-                    CurrentPath = path;
-
                     if (insertInBackStack) Breadcrumbs.Add(pathTreeItem);
                 }
             }
@@ -137,12 +142,17 @@ namespace WpaGhApp.ViewModels.Repository
                 return;
             }
 
-            // TODO: File -> Web, SubDir -> reload with new path
+            // If it is a blob, open it via Web
+            if (ti.ItemType == Octokit.TreeType.Blob)
+            {
+                string htmlUrl = ti.GetHtmlUrl(RepositoryId, SelectedBranch.Name);
 
-            //_navigationService.UriFor<HtmlUrlViewModel>()
-            //    .WithParam(vm => vm.PageTitle, issue.Title)
-            //    .WithParam(vm => vm.HtmlUrl, issue.HtmlUrl)
-            //    .Navigate();
+                _navigationService.UriFor<HtmlUrlViewModel>()
+                    .WithParam(vm => vm.PageTitle, ti.Name)
+                    .WithParam(vm => vm.HtmlUrl, htmlUrl)
+                    .Navigate();
+                return;
+            }
         }
 
         public void NavigateBackstack(GhTreeItem ti)
