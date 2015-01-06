@@ -290,6 +290,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\fonts.txt" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
@@ -297,6 +298,9 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Assets\Fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="todo.txt" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>

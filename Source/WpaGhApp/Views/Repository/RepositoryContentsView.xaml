@@ -21,6 +21,7 @@
 
     <Grid>
         <StackPanel Orientation="Vertical">
+
             <ItemsControl ItemsSource="{Binding Breadcrumbs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -49,15 +50,23 @@
                   ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,9.5">
+                        <StackPanel Margin="0,0,0,9.5" 
+                                    Pivot.SlideInAnimationGroup="1"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="{Binding ItemTypeAsFontawesomeGlyph}" 
+                                Style="{StaticResource ListViewItemTextBlockStyle}"
+                                VerticalAlignment="Center"
+                                Margin="0,0,10,0"
+                                FontFamily="{StaticResource FontAwesome}" />
+                            
                             <TextBlock
-                                        Text="{Binding Name}"
-                                        TextWrapping="NoWrap"
-                                        TextTrimming="WordEllipsis"
-                                        MaxLines="1"
-                                        Pivot.SlideInAnimationGroup="1"
-                                        CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                        Style="{StaticResource ListViewItemTextBlockStyle}"/>
+                                Text="{Binding Name}"
+                                TextWrapping="NoWrap"
+                                TextTrimming="WordEllipsis"
+                                VerticalAlignment="Center"
+                                MaxLines="1"
+                                Style="{StaticResource ListViewItemTextBlockStyle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

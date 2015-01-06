@@ -4,5 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:caliburn="using:Caliburn.Micro"
     xmlns:local="using:WpaGhApp">
+    
+    <Application.Resources>
+        <FontFamily x:Key="FontAwesome">/assets/fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+    </Application.Resources>
 
 </caliburn:CaliburnApplication>
