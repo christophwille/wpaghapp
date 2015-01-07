@@ -20,9 +20,12 @@
     </interactivity:Interaction.Behaviors>
 
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding Breadcrumbs}" Margin="0,0,0,10">
+            <ItemsControl Grid.Row="0" ItemsSource="{Binding Breadcrumbs}" Margin="0,0,0,0">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Margin="0,0,0,0" Orientation="Horizontal"></StackPanel>
@@ -42,22 +45,21 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <ListView
-                x:Name="ContentsListView"
+            <ListView Grid.Row="1"
+                  x:Name="ContentsListView"
                   ItemsSource="{Binding PathItems}"
                   IsItemClickEnabled="True"
                   micro:Message.Attach="[Event ItemClick] = [Action SelectContent($eventArgs)]"
                   ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,9.5" 
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Orientation="Horizontal">
+                        <StackPanel Margin="0,0,0,9.5" Orientation="Horizontal">
                             <TextBlock Text="{Binding ItemTypeAsFontawesomeGlyph}" 
                                 Style="{StaticResource ListViewItemTextBlockStyle}"
                                 VerticalAlignment="Center"
                                 Margin="0,0,10,0"
+                                Pivot.SlideInAnimationGroup="2"
+                                CommonNavigationTransitionInfo.IsStaggerElement="True"
                                 FontFamily="{StaticResource FontAwesome}" />
                             
                             <TextBlock
@@ -66,12 +68,12 @@
                                 TextTrimming="WordEllipsis"
                                 VerticalAlignment="Center"
                                 MaxLines="1"
+                                Pivot.SlideInAnimationGroup="1"
+                                CommonNavigationTransitionInfo.IsStaggerElement="True"
                                 Style="{StaticResource ListViewItemTextBlockStyle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-        </StackPanel>
     </Grid>
 </UserControl>
