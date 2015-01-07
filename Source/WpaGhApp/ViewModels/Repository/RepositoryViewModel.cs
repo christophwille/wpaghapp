@@ -76,7 +76,20 @@ namespace WpaGhApp.ViewModels.Repository
 
         public void LoadState(string jsonState)
         {
-            var state = JsonConvert.DeserializeObject<RepositoryViewModelState>(jsonState);
+            RepositoryViewModelState state = null;
+
+            try
+            {
+                // Catch errors on deserializing state (ie vastly changed state object models between versions)
+                state = JsonConvert.DeserializeObject<RepositoryViewModelState>(jsonState);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("LoadState: " + ex.ToString());
+                return;
+            }
+
+            // No state? Do nothing, get out of here
             if (null == state) return;
 
             if (null != state.Commits)

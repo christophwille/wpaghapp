@@ -22,7 +22,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
 
-            <ItemsControl ItemsSource="{Binding Breadcrumbs}">
+            <ItemsControl ItemsSource="{Binding Breadcrumbs}" Margin="0,0,0,10">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Margin="0,0,0,0" Orientation="Horizontal"></StackPanel>
