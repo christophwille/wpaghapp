@@ -31,7 +31,7 @@
                        Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
         </StackPanel>
 
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,0,0">
             <WebView x:Name="HtmlContent" 
                      Loaded="HtmlContent_OnLoaded"
                      NavigationCompleted="HtmlContent_OnNavigationCompleted"
