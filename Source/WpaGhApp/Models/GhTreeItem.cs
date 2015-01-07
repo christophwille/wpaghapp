@@ -55,6 +55,24 @@ namespace WpaGhApp.Models
                 identifiers.RepositoryOwner, identifiers.RepositoryName, branchName, filePath);
         }
 
+        public int ItemTypeWeightForSorting
+        {
+            get
+            {
+                switch (ItemType)
+                {
+                    case TreeType.Blob:
+                        return 2;
+                    case TreeType.Tree:
+                        return 1;
+                    case TreeType.Commit:
+                        return 3;
+                    default:
+                        return 4;
+                }
+            }
+        }
+
         public string Path { get; set; }
         public string Mode { get; set; }
         public Octokit.TreeType ItemType { get; set; }

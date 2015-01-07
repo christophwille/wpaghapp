@@ -124,7 +124,12 @@ namespace WpaGhApp.ViewModels.Repository
             {
                 if (pathTree.ContainsKey(path))
                 {
-                    PathItems = pathTree[path];
+                    var unsortedItems = pathTree[path];
+                    PathItems = unsortedItems
+                        .OrderBy(ti => ti.ItemTypeWeightForSorting)
+                        .ThenBy(ti => ti.Name)
+                        .ToList();
+
                     if (insertInBackStack) Breadcrumbs.Add(pathTreeItem);
                 }
             }
