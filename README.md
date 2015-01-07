@@ -17,11 +17,10 @@ if you think that will help me track down a bug quicker, or if that includes inf
 
 * `Authorization` - uses OAuth (the main driver for me to implement my own WPA for GitHub)
 * `User` - show own repositories, followers and following (allow drill-down into all three)
-* `Repository` - show statistics, commits and issues
+* `Repository` - show statistics, browse the code, commits and issues
 
 Planned, but currently not implementable:
 
-* Repository/explore source code: Octokit.net doesn't yet support the get-contents APIs
 * User/private news: not yet possible with OAuth according to service documentation
 
 ## Screenshots
