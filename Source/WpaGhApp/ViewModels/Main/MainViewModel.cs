@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
@@ -79,13 +80,13 @@ namespace WpaGhApp.ViewModels.Main
                 if (String.IsNullOrWhiteSpace(value)) return;
 
                 _userJson = value;
-                User = JsonConvert.DeserializeObject<Octokit.User>(_userJson);
+                User = JsonConvert.DeserializeObject<GhUser>(_userJson);
                 
                 PageTitle = User.Login;
             }
         }
 
-        public Octokit.User User { get; set; }
+        public GhUser User { get; set; }
 
         public string PageTitle { get; set; }
     }

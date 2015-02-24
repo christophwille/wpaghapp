@@ -69,9 +69,8 @@ namespace WpaGhApp.ViewModels.Repository
                 // TODO: Make the branch selectable
                 Branches = new List<GhBranch>(GhBranch.ToModel(branches));
                 SelectedBranch = Branches.FirstOrDefault();
-                string shaToPass = SelectedBranch.Sha + "?recursive=1";
 
-                var response = await _githubService.GetTreeAsync(RepositoryId, shaToPass);
+                var response = await _githubService.GetTreeRecursiveAsync(RepositoryId, SelectedBranch.Sha);
 
                 if (response == null)
                 {
@@ -79,6 +78,8 @@ namespace WpaGhApp.ViewModels.Repository
                 }
                 else
                 {
+                    // TODO: bool needToTellUserThatNotEverythingWasLoaded = response.Truncated;
+
                     PathTree = TreeToPathDictionary(response.Tree);
                     SelectPath(new GhTreeItem() { Path = "", Name = "root" });
                 }
@@ -87,7 +88,7 @@ namespace WpaGhApp.ViewModels.Repository
             Working = false;
         }
 
-        private Dictionary<string, List<GhTreeItem>> TreeToPathDictionary(ICollection<Octokit.TreeItem> treeItems)
+        private Dictionary<string, List<GhTreeItem>> TreeToPathDictionary(IReadOnlyList<Octokit.TreeItem> treeItems)
         {
             var dict = new Dictionary<string, List<GhTreeItem>>();
 

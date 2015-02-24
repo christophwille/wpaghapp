@@ -116,7 +116,7 @@ namespace WpaGhApp.Github
                         "application/x-www-form-urlencoded").ConfigureAwait(false);
 
                 // TODO: save the entire json token (expiration time / renewal)
-                string token = response.BodyAsObject.access_token;
+                string token = response.Body.access_token;
 
                 var storedTokenInfo = new TokenSecurityInfo()
                 {

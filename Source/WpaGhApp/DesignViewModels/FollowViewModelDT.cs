@@ -5,25 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.ViewModels.Main;
 
 namespace WpaGhApp.DesignViewModels
 {
     public class FollowViewModelDT : IAccountViewModelBindings
     {
-        public ObservableCollection<Account> Accounts { get; private set; }
+        public ObservableCollection<GhAccount> Accounts { get; private set; }
 
         public FollowViewModelDT()
         {
-            Accounts = new ObservableCollection<Account>(new List<User>
+            Accounts = new ObservableCollection<GhAccount>(new List<GhAccount>
             {
-                new User()
+                new GhAccount()
                 {
                     Login = "DerAlbertCom",
                     Url = "",
                     AvatarUrl = "https://avatars.githubusercontent.com/u/136992?v=2"
                 },
-                new User()
+                new GhAccount()
                 {
                     Login = "dgrunwald",
                     Url = "",

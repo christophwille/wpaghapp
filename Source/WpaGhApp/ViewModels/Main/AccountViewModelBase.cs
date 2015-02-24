@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
@@ -31,46 +32,46 @@ namespace WpaGhApp.ViewModels.Main
 
         public string Login { get; set; }
         public bool Working { get; set; }
-        public ObservableCollection<Account> Accounts { get; private set; }
+        public ObservableCollection<GhAccount> Accounts { get; private set; }
 
         protected override async void OnInitialize()
         {
             Working = true;
-            var users = await GetAccountsAsync();
+            var accountsEnumerable = await GetAccountsAsync();
             Working = false;
 
-            if (null == users)
+            if (null == accountsEnumerable)
             {
                 await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);
             }
             else
             {
-                Accounts = new ObservableCollection<Account>(users);
+                Accounts = new ObservableCollection<GhAccount>(accountsEnumerable);
             }
         }
 
-        protected virtual Task<IReadOnlyList<Account>> GetAccountsAsync()
+        protected virtual Task<IEnumerable<GhAccount>> GetAccountsAsync()
         {
             throw new NotImplementedException();
         }
 
         public void SelectAccount(ItemClickEventArgs eventArgs)
         {
-            var account = eventArgs.ClickedItem as Octokit.Account;
+            var account = eventArgs.ClickedItem as GhAccount;
             if (null == account) return;
 
             NavigateToAccount(account);
         }
 
-        protected virtual void NavigateToAccount(Octokit.Account account)
+        protected virtual void NavigateToAccount(GhAccount account)
         {
-            if (account is Octokit.User)
+            if (account is GhUser)
             {
-                NavigateToUser(account as Octokit.User);
+                NavigateToUser((GhUser)account);
             }
         }
 
-        protected void NavigateToUser(Octokit.User user)
+        protected void NavigateToUser(GhUser user)
         {
             _navigationService.UriFor<MainViewModel>()
                 .WithParam(vm => vm.UserJson, JsonConvert.SerializeObject(user))

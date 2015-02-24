@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels.Main;
 
@@ -19,9 +20,10 @@ namespace WpaGhApp.ViewModels.Org
             DisplayName = "members";
         }
 
-        protected async override Task<IReadOnlyList<Account>> GetAccountsAsync()
+        protected async override Task<IEnumerable<GhAccount>> GetAccountsAsync()
         {
-            return await _githubService.GetOrganizationMembersAsync(Login);
+            var orgMembers = await _githubService.GetOrganizationMembersAsync(Login);
+            return GhUser.MapUsers(orgMembers);
         }
     }
 }

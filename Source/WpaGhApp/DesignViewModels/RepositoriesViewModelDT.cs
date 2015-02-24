@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.ViewModels.Main;
 
 namespace WpaGhApp.DesignViewModels
@@ -13,14 +13,14 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoriesViewModelDT()
         {
-            Repositories = new ObservableCollection<Repository>(new List<Repository>
+            Repositories = new ObservableCollection<GhRepository>(new List<GhRepository>
             {
-                new Repository()
+                new GhRepository()
                 {
                     Name = "wpaghapp",
                     Description = "Windows Phone Application for GitHub"
                 },
-                new Repository()
+                new GhRepository()
                 {
                     Name = "viennarealtime",
                     Description = "City of Vienna public transport departure information"
@@ -29,6 +29,6 @@ namespace WpaGhApp.DesignViewModels
         }
 
         public bool Working { get; set; }
-        public ObservableCollection<Repository> Repositories { get; private set; }
+        public ObservableCollection<GhRepository> Repositories { get; private set; }
     }
 }

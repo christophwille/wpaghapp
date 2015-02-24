@@ -9,6 +9,7 @@ using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels.Repository;
 
@@ -34,7 +35,7 @@ namespace WpaGhApp.ViewModels.Main
 
         public string UserLogin { get; set; }
         public bool Working { get; set; }
-        public ObservableCollection<Octokit.Repository> Repositories { get; private set; }
+        public ObservableCollection<GhRepository> Repositories { get; private set; }
         protected async override void OnInitialize()
         {
             Working = true;
@@ -45,13 +46,13 @@ namespace WpaGhApp.ViewModels.Main
             }
             else
             {
-                Repositories = new ObservableCollection<Octokit.Repository>(repos);
+                Repositories = new ObservableCollection<GhRepository>(GhRepository.ToModel(repos));
             }
         }
 
         public void SelectRepository(ItemClickEventArgs eventArgs)
         {
-            var repository = eventArgs.ClickedItem as Octokit.Repository;
+            var repository = eventArgs.ClickedItem as GhRepository;
             if (null == repository) return;
             
             _navigationService.UriFor<RepositoryViewModel>()

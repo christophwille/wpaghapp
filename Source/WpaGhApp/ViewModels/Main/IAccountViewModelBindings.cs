@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Octokit;
+using WpaGhApp.Models;
 
 namespace WpaGhApp.ViewModels.Main
 {
     public interface IAccountViewModelBindings : IViewModelWithProgessIndicator
     {
-        // User, Organization derive from Account
-        ObservableCollection<Octokit.Account> Accounts { get; }
+        ObservableCollection<GhAccount> Accounts { get; }
     }
 }

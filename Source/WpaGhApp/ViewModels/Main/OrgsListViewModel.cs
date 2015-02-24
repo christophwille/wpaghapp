@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels.Org;
 
@@ -21,14 +22,15 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "organizations";
         }
 
-        protected async override Task<IReadOnlyList<Account>> GetAccountsAsync()
+        protected async override Task<IEnumerable<GhAccount>> GetAccountsAsync()
         {
-            return await _githubService.GetOrganizationsAsync(Login);
+            var orgs = await _githubService.GetOrganizationsAsync(Login);
+            return GhOrganization.MapOrganizations(orgs);
         }
 
-        protected override void NavigateToAccount(Account account)
+        protected override void NavigateToAccount(GhAccount account)
         {
-            var org = account as Octokit.Organization;
+            var org = account as GhOrganization;
 
             _navigationService.UriFor<OrgViewModel>()
                 .WithParam(vm => vm.OrgJson, JsonConvert.SerializeObject(org))

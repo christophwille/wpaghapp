@@ -47,16 +47,16 @@ namespace WpaGhApp.ViewModels.Repository
                 if (String.IsNullOrWhiteSpace(value)) return;
 
                 _repositoryJson = value;
-                Repository = JsonConvert.DeserializeObject<Octokit.Repository>(_repositoryJson);
+                Repository = JsonConvert.DeserializeObject<GhRepository>(_repositoryJson);
                 RepositoryName = Repository.Name;
-                RepositoryOwner = Repository.Owner.Login;
+                RepositoryOwner = Repository.OwnerLogin;
             }
         }
 
         public string RepositoryName { get; private set; }
         public string RepositoryOwner { get; private set; }
 
-        public Octokit.Repository Repository { get; private set; }
+        public GhRepository Repository { get; private set; }
 
         protected override void OnInitialize()
         {

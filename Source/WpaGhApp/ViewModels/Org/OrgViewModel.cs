@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using WpaGhApp.Common;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 using WpaGhApp.ViewModels.Main;
 
@@ -54,12 +55,12 @@ namespace WpaGhApp.ViewModels.Org
                 if (String.IsNullOrWhiteSpace(value)) return;
 
                 _orgJson = value;
-                Org = JsonConvert.DeserializeObject<Octokit.Organization>(_orgJson);
+                Org = JsonConvert.DeserializeObject<GhOrganization>(_orgJson);
 
                 PageTitle = Org.Login;
             }
         }
 
-        public Octokit.Organization Org { get; set; }
+        public GhOrganization Org { get; set; }
     }
 }

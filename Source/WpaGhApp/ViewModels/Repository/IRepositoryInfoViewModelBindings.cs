@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpaGhApp.Models;
 
 namespace WpaGhApp.ViewModels.Repository
 {
     public interface IRepositoryInfoViewModelBindings
     {
-        Octokit.Repository Repository { get; set; }
+        GhRepository Repository { get; set; }
     }
 }

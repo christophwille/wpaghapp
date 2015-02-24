@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpaGhApp.Models;
 using WpaGhApp.ViewModels.Repository;
 
 namespace WpaGhApp.DesignViewModels
@@ -11,7 +12,7 @@ namespace WpaGhApp.DesignViewModels
     {
         public RepositoryInfoViewModelDT()
         {
-            Repository = new Octokit.Repository()
+            Repository = new GhRepository()
             {
                 ForksCount = 0,
                 OpenIssuesCount = 155,
@@ -20,6 +21,6 @@ namespace WpaGhApp.DesignViewModels
             };
         }
 
-        public Octokit.Repository Repository { get; set; }
+        public GhRepository Repository { get; set; }
     }
 }

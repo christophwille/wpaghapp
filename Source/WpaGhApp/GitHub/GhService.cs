@@ -202,12 +202,12 @@ namespace WpaGhApp.Github
             return contents;
         }
 
-        public async Task<TreeResponse> GetTreeAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers, string sha)
+        public async Task<TreeResponse> GetTreeRecursiveAsync(IGitHubRepositoryIdentifiers repositoryIdentifiers, string sha)
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
             var response = await ExecuteWithErrorTrappingAsync(
-                () => _gitHubClient.GitDatabase.Tree.Get(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName, sha))
+                () => _gitHubClient.GitDatabase.Tree.GetRecursive(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName, sha))
                 .ConfigureAwait(false);
 
             return response;

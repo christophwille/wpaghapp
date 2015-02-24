@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Repository
@@ -26,6 +27,6 @@ namespace WpaGhApp.ViewModels.Repository
             DisplayName = "general";
         }
 
-        public Octokit.Repository Repository { get; set; }
+        public GhRepository Repository { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Octokit;
+using WpaGhApp.Models;
 using WpaGhApp.Services;
 
 namespace WpaGhApp.ViewModels.Main
@@ -17,9 +18,10 @@ namespace WpaGhApp.ViewModels.Main
             DisplayName = "followers";
         }
 
-        protected async override Task<IReadOnlyList<Account>> GetAccountsAsync()
+        protected async override Task<IEnumerable<GhAccount>> GetAccountsAsync()
         {
-            return await _githubService.GetFollowersAsync(Login);
+            var followers = await _githubService.GetFollowersAsync(Login);
+            return GhUser.MapUsers(followers);
         }
     }
 }
