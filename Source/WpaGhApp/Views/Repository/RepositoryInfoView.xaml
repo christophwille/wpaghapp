@@ -24,7 +24,7 @@
                            Style="{ThemeResource BodyTextBlockStyle}" />
                 <TextBlock Text="Watchers"
                            Style="{ThemeResource SubheaderTextBlockStyle}" />
-                <TextBlock Text="{Binding Repository.WatchersCount}" 
+                <TextBlock Text="{Binding Repository.SubscribersCount}" 
                            Style="{ThemeResource BodyTextBlockStyle}" />
                 <TextBlock Text="Stargazers" 
                            Style="{ThemeResource SubheaderTextBlockStyle}" />

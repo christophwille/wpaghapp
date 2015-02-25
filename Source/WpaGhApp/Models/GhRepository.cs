@@ -17,7 +17,7 @@ namespace WpaGhApp.Models
                 ForksCount = repo.ForksCount,
                 OpenIssuesCount = repo.OpenIssuesCount,
                 StargazersCount = repo.StargazersCount,
-                WatchersCount = repo.WatchersCount,
+                SubscribersCount = repo.SubscribersCount,
                 OwnerLogin = repo.Owner.Login
             };
         }
@@ -32,7 +32,7 @@ namespace WpaGhApp.Models
         public int ForksCount { get; set; }
         public int OpenIssuesCount { get; set; }
         public int StargazersCount { get; set; }
-        public int WatchersCount { get; set; }
+        public int SubscribersCount { get; set; }
 
         // Composite properties
         public string OwnerLogin { get; set; }

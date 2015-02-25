@@ -17,7 +17,7 @@ namespace WpaGhApp.DesignViewModels
                 ForksCount = 0,
                 OpenIssuesCount = 155,
                 StargazersCount = 2,
-                WatchersCount = 20
+                SubscribersCount = 20
             };
         }
 
