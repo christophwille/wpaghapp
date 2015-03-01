@@ -40,7 +40,9 @@ namespace WpaGhApp.ViewModels.Main
         {
             Working = true;
             var repos = await _githubService.GetRepositoriesAsync(UserLogin);
-            Working = false;if (null == repos)
+            Working = false;
+            
+            if (null == repos)
             {
                 await _messageService.ShowAsync("An error occured. " + _githubService.LastErrorMessage);
             }
