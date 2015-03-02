@@ -17,7 +17,6 @@ namespace WpaGhApp.Models
                 ForksCount = repo.ForksCount,
                 OpenIssuesCount = repo.OpenIssuesCount,
                 StargazersCount = repo.StargazersCount,
-                SubscribersCount = repo.SubscribersCount,
                 OwnerLogin = repo.Owner.Login
             };
         }
@@ -32,7 +31,9 @@ namespace WpaGhApp.Models
         public int ForksCount { get; set; }
         public int OpenIssuesCount { get; set; }
         public int StargazersCount { get; set; }
-        public int SubscribersCount { get; set; }
+
+        // https://github.com/octokit/octokit.net/issues/735
+        // public int SubscribersCount { get; set; }
 
         // Composite properties
         public string OwnerLogin { get; set; }

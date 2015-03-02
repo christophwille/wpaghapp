@@ -22,10 +22,12 @@
                            Style="{ThemeResource SubheaderTextBlockStyle}" />
                 <TextBlock Text="{Binding Repository.ForksCount}" 
                            Style="{ThemeResource BodyTextBlockStyle}" />
+                <!--
                 <TextBlock Text="Watchers"
                            Style="{ThemeResource SubheaderTextBlockStyle}" />
                 <TextBlock Text="{Binding Repository.SubscribersCount}" 
-                           Style="{ThemeResource BodyTextBlockStyle}" />
+                           Style="{ThemeResource BodyTextBlockStyle}" /
+                >-->
                 <TextBlock Text="Stargazers" 
                            Style="{ThemeResource SubheaderTextBlockStyle}" />
                 <TextBlock Text="{Binding Repository.StargazersCount}" 
