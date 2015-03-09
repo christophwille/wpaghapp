@@ -137,7 +137,7 @@ namespace WpaGhApp.Github
             return false;
         }
 
-        public async Task<Credentials> GetCredentialsAsync()
+        public Task<Credentials> GetCredentialsAsync()
         {
             string tokenInfoJson = VaultManager.GetPassword(VaultTokenInfoResourceKey, VaultDefaultUnusedUserName);
 
@@ -151,7 +151,7 @@ namespace WpaGhApp.Github
 
             // TODO: do we need to refresh the access token?
 
-            return new Credentials(tokenInfo.AccessToken);
+            return Task.FromResult(new Credentials(tokenInfo.AccessToken));
         }
 
 
