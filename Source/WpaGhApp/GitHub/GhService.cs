@@ -134,9 +134,9 @@ namespace WpaGhApp.Github
             {
                 if (String.IsNullOrWhiteSpace(login))
                 {
-                    return await _gitHubClient.User.Followers.GetFollowingForCurrent().ConfigureAwait(false);
+                    return await _gitHubClient.User.Followers.GetAllFollowingForCurrent().ConfigureAwait(false);
                 }
-                return await _gitHubClient.User.Followers.GetFollowing(login).ConfigureAwait(false);
+                return await _gitHubClient.User.Followers.GetAllFollowing(login).ConfigureAwait(false);
             })
             .ConfigureAwait(false);
 
