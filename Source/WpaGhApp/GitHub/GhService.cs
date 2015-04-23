@@ -185,7 +185,7 @@ namespace WpaGhApp.Github
         {
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
-            var issues = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Issue.GetForRepository(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName))
+            var issues = await ExecuteWithErrorTrappingAsync(() => _gitHubClient.Issue.GetAllForRepository(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName))
                 .ConfigureAwait(false);
 
             return issues;
@@ -196,7 +196,7 @@ namespace WpaGhApp.Github
             await EnsureCredentialsAsync().ConfigureAwait(false);
 
             var contents = await ExecuteWithErrorTrappingAsync(
-                () => _gitHubClient.Repository.Content.GetContents(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName, contentPath))
+                () => _gitHubClient.Repository.Content.GetAllContents(repositoryIdentifiers.RepositoryOwner, repositoryIdentifiers.RepositoryName, contentPath))
                 .ConfigureAwait(false);
 
             return contents;
